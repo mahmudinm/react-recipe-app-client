@@ -12,11 +12,6 @@
    font-size: $input-btn-font-size;
    will-change: transform;
 
-   &:hover {
-      @include box-shadow($btn-hover-box-shadow);
-      transform: translateY($btn-hover-translate-y);
-   }
-
    &:not(:last-child) {
       margin-right: .5rem;
    }

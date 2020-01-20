@@ -7,7 +7,6 @@ import AdminNavbar from "components/Navbars/AdminNavbar.jsx";
 import AdminFooter from "components/Footers/AdminFooter.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 
-
 const Admin = (props) => {
   return (
     <>
