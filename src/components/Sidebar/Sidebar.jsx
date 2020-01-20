@@ -239,16 +239,26 @@ class Sidebar extends React.Component {
             </Form>
             {/* Navigation */}
             <Nav navbar>
-              {this.createLinks(routes)}
               <NavItem>
                 <NavLink
-                  to={'/admin/icons'}
+                  to={'/admin/category'}
                   onClick={this.closeCollapse}
                   tag={NavLinkRRD}
                   activeClassName="active"
                 >
                   <i className="ni ni-tv-2 text-primary" />
-                  Test
+                  Category
+                </NavLink>
+              </NavItem> 
+              <NavItem>
+                <NavLink
+                  to={'/admin/users'}
+                  onClick={this.closeCollapse}
+                  tag={NavLinkRRD}
+                  activeClassName="active"
+                >
+                  <i className="ni ni-tv-2 text-primary" />
+                  Users
                 </NavLink>
               </NavItem>              
             </Nav>

@@ -1,26 +1,15 @@
-import Index from "views/Index.jsx";
-import Profile from "views/examples/Profile.jsx";
-import Maps from "views/examples/Maps.jsx";
-import Register from "views/examples/Register.jsx";
-import Login from "views/examples/Login.jsx";
-import Tables from "views/examples/Tables.jsx";
-import Icons from "views/examples/Icons.jsx";
-import CategoryFormPage from "containers/page/admin/category/form";
+import React from "react";
+import { Switch } from 'react-router-dom';
+import LayoutRoute from "components/Router/LayoutRoute";
+import MainLayout from "containers/layouts/Main";
+import LoginPage from "containers/page/auth/login";
 
-var main = [
-  {
-    path: "/login",
-    name: "Login",
-    icon: "ni ni-key-25 text-info",
-    component: Login,
-    layout: "/auth"
-  },
-  {
-    path: "/register",
-    name: "Register",
-    icon: "ni ni-circle-08 text-pink",
-    component: Register,
-    layout: "/auth"
-  }
-];
-export default main;
+const MainRoute = () => {
+  return (
+    <Switch>
+      <LayoutRoute path="/auth/login" layout={MainLayout} component={LoginPage} />
+    </Switch>
+  )
+}
+
+export default MainRoute;

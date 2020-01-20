@@ -7,9 +7,8 @@ import { Container, Row, Col } from "reactstrap";
 import AuthNavbar from "components/Navbars/AuthNavbar.jsx";
 import AuthFooter from "components/Footers/AuthFooter.jsx";
 
-import main from "routes/main";
 
-class Auth extends React.Component {
+class Main extends React.Component {
 
   componentDidMount() {
     document.body.classList.add("bg-default");
@@ -18,22 +17,6 @@ class Auth extends React.Component {
   componentWillUnmount() {
     document.body.classList.remove("bg-default");
   }
-
-  getRoutes = main => {
-    return main.map((prop, key) => {
-      if (prop.layout === "/auth") {
-        return (
-          <Route
-            path={prop.layout + prop.path}
-            component={prop.component}
-            key={key}
-          />
-        );
-      } else {
-        return null;
-      }
-    });
-  };
 
   render() {
     return (
@@ -73,7 +56,7 @@ class Auth extends React.Component {
           {/* Page content */}
           <Container className="mt--8 pb-5">
             <Row className="justify-content-center">
-              <Switch>{this.getRoutes(main)}</Switch>
+              {this.props.children}
             </Row>
           </Container>
         </div>
@@ -83,4 +66,4 @@ class Auth extends React.Component {
   }
 }
 
-export default Auth;
+export default Main;

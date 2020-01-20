@@ -1,48 +1,31 @@
-import Index from "views/Index.jsx";
-import Profile from "views/examples/Profile.jsx";
-import Maps from "views/examples/Maps.jsx";
-import Register from "views/examples/Register.jsx";
-import Login from "views/examples/Login.jsx";
-import Tables from "views/examples/Tables.jsx";
-import Icons from "views/examples/Icons.jsx";
-import CategoryListPage from "containers/page/admin/category/list";
+import React from "react";
+import { Switch } from 'react-router-dom';
+import LayoutRoute from "components/Router/LayoutRoute";
 
-var admin = [
-  {
-    path: "/index",
-    name: "Dashboard",
-    icon: "ni ni-tv-2 text-primary",
-    component: Index,
-    layout: "/admin"
-  },
-  {
-    exact: true,
-    path: "/category",
-    name: "Category",
-    icon: "ni ni-planet text-blue",
-    component: CategoryListPage,
-    layout: "/admin"
-  },
-  {
-    path: "/maps",
-    name: "Maps",
-    icon: "ni ni-pin-3 text-orange",
-    component: Maps,
-    layout: "/admin"
-  },
-  {
-    path: "/user-profile",
-    name: "User Profile",
-    icon: "ni ni-single-02 text-yellow",
-    component: Profile,
-    layout: "/admin"
-  },
-  {
-    path: "/tables",
-    name: "Tables",
-    icon: "ni ni-bullet-list-67 text-red",
-    component: Tables,
-    layout: "/admin"
-  }
-];
-export default admin;
+import AdminLayout from "containers/layouts/Admin";
+
+import CategoryListPage from "containers/page/admin/category/list";
+import CategoryFormPage from "containers/page/admin/category/form";
+
+import UsersListPage from "containers/page/admin/users/list";
+import UsersFormPage from "containers/page/admin/users/form";
+
+const AdminRoute = () => {
+  return (
+    <Switch>
+    
+      {/*Category*/}
+      <LayoutRoute exact path="/admin/category" layout={AdminLayout} component={CategoryListPage} />
+      <LayoutRoute path="/admin/category/create" layout={AdminLayout} component={CategoryFormPage} />
+      <LayoutRoute path="/admin/category/:id/edit" layout={AdminLayout} component={CategoryFormPage} />
+
+      {/*Users*/}
+      <LayoutRoute exact path="/admin/users" layout={AdminLayout} component={UsersListPage} />
+      <LayoutRoute path="/admin/users/create" layout={AdminLayout} component={UsersFormPage} />
+      <LayoutRoute path="/admin/users/:id/edit" layout={AdminLayout} component={UsersFormPage} />
+
+    </Switch>
+  )
+}
+
+export default AdminRoute;

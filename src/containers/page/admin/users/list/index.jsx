@@ -14,7 +14,7 @@ import {
 
 import Header from "components/Headers/Header.jsx";
 
-const CategoryListPage = () => {
+const UserListPage = () => {
 	return (
       <>
         <Header />      
@@ -24,7 +24,7 @@ const CategoryListPage = () => {
             <div className=" col">
               <Card className=" shadow">
                 <CardHeader className=" bg-transparent">
-                  <h3 className=" mb-0">Icons</h3>
+                  <h3 className=" mb-0">Users</h3>
                 </CardHeader>
                 <CardBody>
                   <Row className=" icon-examples">
@@ -38,4 +38,4 @@ const CategoryListPage = () => {
 	)
 }
 
-export default CategoryListPage;
+export default UserListPage;
