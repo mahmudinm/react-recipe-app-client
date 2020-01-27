@@ -1,20 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Switch } from "react-router-dom";
+import { Router, Switch } from "react-router-dom";
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 
 import "assets/vendor/nucleo/css/nucleo.css";
 import "assets/vendor/@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/scss/argon-dashboard-react.scss";
 
+import history from './utils/history'
+import { store, persistor } from './store';
+
 import AdminRoute from "routes/Admin";
 import MainRoute from "routes/Main";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Switch>
-      <MainRoute />
-   		<AdminRoute />
-    </Switch>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <Router history={history}>
+        <Switch>
+          <MainRoute />
+       		<AdminRoute />
+        </Switch>
+      </Router>
+    </PersistGate>
+  </Provider>,
   document.getElementById("root")
 );
