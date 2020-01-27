@@ -15,7 +15,7 @@ const CategoryListPage = () => {
 	return (
       <>
         <Header />      
-        <Container className=" mt--7" fluid>
+        <Container className="mt--7" fluid>
           {/* Table */}
           <Row>
             <div className=" col">
