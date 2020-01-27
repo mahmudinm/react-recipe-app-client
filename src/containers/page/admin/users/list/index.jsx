@@ -1,15 +1,12 @@
 import React from 'react';
 
-import { CopyToClipboard } from "react-copy-to-clipboard";
 // reactstrap components
 import {
   Card,
   CardHeader,
   CardBody,
   Container,
-  Row,
-  Col,
-  UncontrolledTooltip
+  Row
 } from "reactstrap";
 
 import Header from "components/Headers/Header.jsx";
