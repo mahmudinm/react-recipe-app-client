@@ -13,7 +13,7 @@ import Header from "components/Headers/Header.jsx";
 
 const CategoryListPage = () => {
 	return (
-      <>
+      <React.Fragment>
         <Header />      
         <Container className="mt--7" fluid>
           {/* Table */}
@@ -21,7 +21,7 @@ const CategoryListPage = () => {
             <div className=" col">
               <Card className=" shadow">
                 <CardHeader className=" bg-transparent">
-                  <h3 className=" mb-0">Icons</h3>
+                  <h3 className=" mb-0">Category</h3>
                 </CardHeader>
                 <CardBody>
                   <Row className=" icon-examples">
@@ -32,7 +32,7 @@ const CategoryListPage = () => {
             </div>
           </Row>
         </Container>
-      </>		
+      </React.Fragment>		
 	)
 }
 
