@@ -36,6 +36,10 @@ export function* login({
   }
 }
 
+export function logout() {
+  history.push('/auth/login');
+}
+
 export function setToken({ payload }) {
   if(!payload) return;
 
@@ -44,10 +48,6 @@ export function setToken({ payload }) {
   if(token) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
   }
-}
-
-export function logout() {
-  history.push('/auth/login');
 }
 
 export default all([

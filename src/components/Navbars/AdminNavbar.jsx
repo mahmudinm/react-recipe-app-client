@@ -1,18 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from "store/modules/auth/actions";
 import jwt from 'jwt-decode'
 import {
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
   DropdownToggle,
-  Form,
-  FormGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Input,
-  InputGroup,
   Navbar,
   Nav,
   Container,
@@ -20,11 +15,17 @@ import {
 } from "reactstrap";
 
 const AdminNavbar = () => {
+
+  const dispatch = useDispatch();
   const token = useSelector(state => state.auth.token);
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   let jwtDecode 
   if (token !== null) {
     jwtDecode = jwt(token)
+  }
+
+  const handleLogout = () => {
+    dispatch(logout())
   }
 
   return (
@@ -48,7 +49,7 @@ const AdminNavbar = () => {
                 </Media>
               </DropdownToggle>
               <DropdownMenu className="dropdown-menu-arrow" right>
-                <DropdownItem href="#pablo" onClick={e => e.preventDefault()}>
+                <DropdownItem href="#logout" onClick={handleLogout}>
                   <i className="ni ni-user-run" />
                   <span>Logout</span>
                 </DropdownItem>
