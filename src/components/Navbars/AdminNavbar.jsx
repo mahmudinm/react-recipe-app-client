@@ -23,7 +23,7 @@ const AdminNavbar = () => {
   const token = useSelector(state => state.auth.token);
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   let jwtDecode 
-  if (Object.entries(token).length !== 0) {
+  if (token !== null) {
     jwtDecode = jwt(token)
   }
 
