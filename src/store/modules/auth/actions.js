@@ -1,9 +1,8 @@
-export function loginRequest(email, password) {
-  return {
-    type: 'LOGIN_REQUEST',
-    value: { email, password }
-  }
-}
+export const loginRequest = (payload, meta) => ({
+  type: 'LOGIN_REQUEST',
+  payload,
+  meta
+})
 
 export function loginFailure() {
   return {
@@ -13,8 +12,8 @@ export function loginFailure() {
 
 export function loginSuccess(token) {
   return {
-    type: 'LOGIN_REQUEST',
-    value: { token }
+    type: 'LOGIN_SUCCESS',
+    payload: token 
   }
 }
 

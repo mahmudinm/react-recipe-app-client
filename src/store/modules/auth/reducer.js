@@ -19,7 +19,7 @@ const auth = (state = initialState, action ) => {
     case 'LOGIN_SUCCESS': 
       return {
         ...state,
-        token: action.value,
+        token: action.payload,
         loading: false,
         isAuthenticated: true,
       }

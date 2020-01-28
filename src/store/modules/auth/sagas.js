@@ -5,9 +5,12 @@ import history from "utils/history";
 
 import { loginSuccess, loginFailure } from './actions';
 
-export function* login({ value }) {
+export function* login({ 
+  payload,
+  meta: { setSubmitting, setStatus }
+}) {
   try {
-    const { email, password } = value;
+    const { email, password } = payload
 
     const response = yield call(api.post, 'auth/login', {
       email,
@@ -20,10 +23,16 @@ export function* login({ value }) {
 
     yield put(loginSuccess(token));
 
+    setStatus();
+
     history.push('/admin/category');
   } catch (err) {
-    // if (err.status === 400)
+
+    setStatus("Email atau Password Salah");
     yield put(loginFailure());
+
+  } finally {
+    setSubmitting(false);
   }
 }
 
