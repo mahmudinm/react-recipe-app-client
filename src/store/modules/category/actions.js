@@ -18,8 +18,9 @@ export const storeCategoryRequest = (payload, meta, toggle) => ({
   toggle
 })
 
-export const storeCategorySuccess = () => ({
+export const storeCategorySuccess = (payload) => ({
   type: 'STORE_CATEGORY_SUCCESS',
+  payload,
 })
 
 export const editCategory = (payload) => ({

@@ -15,6 +15,11 @@ const category = (state = initialState, action ) => {
         ...state,
         category: {}
       }
+    case 'STORE_CATEGORY_SUCCESS':
+      return {
+        ...state,
+        categories: [...state.categories, action.payload.data]
+      }
     default: return state;
   }
 }

@@ -36,14 +36,14 @@ export function* storeCategory({
   toggle
 }) {
   try {
-    const { category } = payload; 
+    const { name } = payload; 
 
     const response = yield call(api.post, 'admin/category', {
-      category
+      name
     });
 
-    // yield put(storeCategorySuccess(payload)) // ketika telah di save maka akan fetch ulang secara sync
-    yield put(getCategoryRequest()) // ketika telah di save maka akan fetch ulang secara async
+    yield put(storeCategorySuccess(response.data)) // ketika telah di save maka akan fetch ulang secara sync
+    // yield put(getCategoryRequest()) // ketika telah di save maka akan fetch ulang secara async
     toggle(); // tutup modal ketika telah berhasil di save
 
   } catch (err) {
