@@ -8,9 +8,13 @@ import {
   Container,
   Row
 } from "reactstrap";
-import { getCategoryRequest } from "store/modules/category/actions";
+import { 
+  getCategoryRequest, 
+  createCategoryRequest,
+  editCategoryRequest 
+} from "store/modules/category/actions";
 import Header from "components/Headers/Header.jsx";
-import CategoryTable from './CategoryTable';
+import CategoryTable from './CategoryTable.jsx';
 import CategoryFormPage from '../form';
 
 const CategoryListPage = () => {
@@ -19,24 +23,30 @@ const CategoryListPage = () => {
     dispatch(getCategoryRequest())
   }, [dispatch])
 
-  const [modal, setModal] = useState(false);
-  const [modalTitle, setModalTitle] = useState("");
-  const dispatch = useDispatch();
-  const categories = useSelector(state => state.category.categories);
+  const [modal, setModal] = useState(false); // untuk set modal false atau true
+  const [modalTitle, setModalTitle] = useState(""); // untuk set title pada modal
+  const toggle = () => setModal(!modal);
+  const dispatch = useDispatch(); 
+  const categories = useSelector(state => state.category.categories); // untuk mengambil hasil fetch data dari useEffect
+  const category = useSelector(state => state.category.category); // untuk mengambil hasil action dari handleModal untuk create dan update
 
-  const handleModal = (id) => {
-    setModal(!modal);
-    if(id) {
-      setModalTitle("Edit Form Data")
-    } else {
-      setModalTitle("Create Form Data")
-    }
+  // 
+  const handleModalCreate = () => {
+    toggle();
+    setModalTitle("Create Form Data");
+    dispatch(createCategoryRequest());
+  }
+  // 
+  const handleModalEdit = (id) => {
+    toggle();
+    setModalTitle("Edit Form Data");
+    // dispatch(editCategoryRequest(id));
   }
 
 	return (
     <React.Fragment>
       {/* Modal Form */}
-      <CategoryFormPage modal={modal} handleModal={handleModal} modalTitle={modalTitle} />
+      <CategoryFormPage modal={modal} toggle={toggle} modalTitle={modalTitle} category={category} />
 
       <Header />      
       <Container className="mt--7" fluid>
@@ -46,11 +56,14 @@ const CategoryListPage = () => {
               <CardHeader className=" bg-transparent">
                 <h3 className="mb-0 d-inline">Category</h3>
                 <div className="float-right">
-                  <Button color="primary" onClick={() => handleModal()}>Create</Button>
+                  <Button color="primary" onClick={() => handleModalCreate()}>Create</Button>
                 </div>
               </CardHeader>
               <CardBody>
-                <CategoryTable categories={categories} handleModal={handleModal} />
+
+                {/* Table component */}
+                <CategoryTable categories={categories} handleModalEdit={handleModalEdit} />
+
               </CardBody>
             </Card>
           </div>

@@ -4,12 +4,14 @@ import api from "utils/api";
 import history from "utils/history";
 
 import { 
+  getCategoryRequest,
   getCategorySuccess,
-  createCategory,
+  storeCategorySuccess,
   updateCategory,
   removeCategory
 } from './actions';
 
+// Fetch DATA
 export function* getCategory() {
   try {
     
@@ -27,6 +29,30 @@ export function* getCategory() {
   }
 }
 
+// Store/SAVE DATA
+export function* storeCategory({
+  payload,
+  meta: { setSubmitting },
+  toggle
+}) {
+  try {
+    const { category } = payload; 
+
+    const response = yield call(api.post, 'admin/category', {
+      category
+    });
+
+    // yield put(storeCategorySuccess(payload)) // ketika telah di save maka akan fetch ulang secara sync
+    yield put(getCategoryRequest()) // ketika telah di save maka akan fetch ulang secara async
+    toggle(); // tutup modal ketika telah berhasil di save
+
+  } catch (err) {
+
+    setSubmitting(false); // setSubmit false pada form supaya enable setelah terima error
+  }
+}
+
 export default all([
-  takeLatest('GET_CATEGORY_REQUEST', getCategory)
+  takeLatest('GET_CATEGORY_REQUEST', getCategory),
+  takeLatest('STORE_CATEGORY_REQUEST', storeCategory)
 ])

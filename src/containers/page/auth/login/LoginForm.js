@@ -19,8 +19,8 @@ const LoginForm = ({ handleLogin }) => {
         password: Yup.string()
           .required('Required')
       })}
-      onSubmit={(data, actions) => {
-        handleLogin(data, actions);
+      onSubmit={(data, meta) => {
+        handleLogin(data, meta);
       }}
     >
       {formik => (

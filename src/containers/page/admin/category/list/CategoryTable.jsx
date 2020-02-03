@@ -3,7 +3,7 @@ import Table from "components/ReactTable/Table"
 import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
-export default function CategoryTable({ categories, deleteBook, handleModal }) {
+export default function CategoryTable({ categories, deleteBook, handleModalEdit }) {
 
   const columns = React.useMemo(
     () => [ 
@@ -18,7 +18,7 @@ export default function CategoryTable({ categories, deleteBook, handleModal }) {
         Cell: ({row}) => (
           <div>
              {/*<Link to={`/admin/category/${row.original.id}/edit`} className="btn btn-sm btn-primary">Edit</Link>*/}
-             <Button onClick={() => handleModal(row.original.id)} color="primary" size="sm" >Edit</Button>
+             <Button onClick={() => handleModalEdit(row.original.id)} color="primary" size="sm" >Edit</Button>
              <button onClick={() => deleteBook(row.original.id)} className="btn btn-sm btn-danger">Delete</button>
           </div>
         )

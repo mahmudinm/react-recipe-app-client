@@ -11,19 +11,28 @@ import {
   ModalBody, 
   ModalFooter   
 } from "reactstrap";
+import CategoryForm from './CategoryForm.jsx';
+import {
+  storeCategoryRequest
+} from "store/modules/category/actions";
+import { useDispatch } from 'react-redux';
 
-const CategoryFormPage = ({ modal, handleModal, modalTitle }) => {
+const CategoryFormPage = ({ modal, toggle, modalTitle, category }) => {
+
+  const dispatch = useDispatch();
+
+  const storeCategory = (data, meta, toggle) => {
+    dispatch(storeCategoryRequest(data, meta, toggle));
+  }
+
 	return (
     <React.Fragment>
-      <Modal isOpen={modal} toggle={() => handleModal()}>
-        <ModalHeader toggle={() => handleModal()}>{modalTitle}</ModalHeader>
+      <Modal isOpen={modal} toggle={toggle} size="lg">
+        <ModalHeader toggle={toggle}>{modalTitle}</ModalHeader>
         <ModalBody>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          {/* Form Component */}
+          <CategoryForm toggle={toggle} category={category} storeCategory={storeCategory} />
         </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={() => handleModal()}>Do Something</Button>{' '}
-          <Button color="secondary" onClick={() => handleModal()}>Cancel</Button>
-        </ModalFooter>
       </Modal>
     </React.Fragment>
 	)

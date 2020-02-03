@@ -10,6 +10,11 @@ const category = (state = initialState, action ) => {
         ...state,
         categories: action.payload,
       }
+    case 'CREATE_CATEGORY_REQUEST':
+      return {
+        ...state,
+        category: {}
+      }
     default: return state;
   }
 }
