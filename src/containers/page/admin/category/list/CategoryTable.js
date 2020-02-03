@@ -1,8 +1,9 @@
 import React from 'react'
 import Table from "components/ReactTable/Table"
+import { Button } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
-export default function CategoryTable({ categories, deleteBook }) {
+export default function CategoryTable({ categories, deleteBook, handleModal }) {
 
   const columns = React.useMemo(
     () => [ 
@@ -16,7 +17,8 @@ export default function CategoryTable({ categories, deleteBook }) {
         disableFilters: true,
         Cell: ({row}) => (
           <div>
-             <Link to={`/book/${row.original.id}/edit`} className="btn btn-sm btn-primary">Edit</Link>{' '}
+             {/*<Link to={`/admin/category/${row.original.id}/edit`} className="btn btn-sm btn-primary">Edit</Link>*/}
+             <Button onClick={() => handleModal(row.original.id)} color="primary" size="sm" >Edit</Button>
              <button onClick={() => deleteBook(row.original.id)} className="btn btn-sm btn-danger">Delete</button>
           </div>
         )
