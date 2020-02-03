@@ -43,7 +43,7 @@ export function* storeCategory({
     });
 
     yield put(storeCategorySuccess(response.data)) // ketika telah di save maka akan fetch ulang secara sync
-    // yield put(getCategoryRequest()) // ketika telah di save maka akan fetch ulang secara async
+    yield put(getCategoryRequest()) // ketika telah di save maka akan fetch ulang secara async
     toggle(); // tutup modal ketika telah berhasil di save
 
   } catch (err) {
