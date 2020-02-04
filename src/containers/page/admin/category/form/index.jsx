@@ -1,15 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  Container,
-  Row,
-  Button,
   Modal, 
   ModalHeader, 
-  ModalBody, 
-  ModalFooter   
+  ModalBody   
 } from "reactstrap";
 import CategoryForm from './CategoryForm.jsx';
 import {

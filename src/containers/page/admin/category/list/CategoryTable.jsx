@@ -1,7 +1,6 @@
 import React from 'react'
 import Table from "components/ReactTable/Table"
 import { Button } from 'reactstrap';
-import { Link } from 'react-router-dom'
 
 export default function CategoryTable({ categories, handleModalEdit, deleteCategory }) {
 
@@ -24,7 +23,7 @@ export default function CategoryTable({ categories, handleModalEdit, deleteCateg
         )
       }
     ],
-    [deleteCategory]
+    [handleModalEdit, deleteCategory]
   )
 
   return (

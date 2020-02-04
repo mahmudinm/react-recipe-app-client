@@ -1,7 +1,6 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 
 import api from "utils/api";
-import history from "utils/history";
 
 import { 
   getCategoryRequest,

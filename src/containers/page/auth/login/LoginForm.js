@@ -2,7 +2,6 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { TextInput } from "components/Formik/TextInput";
-import { Spinner } from 'reactstrap';
 
 const LoginForm = ({ handleLogin }) => {
 
