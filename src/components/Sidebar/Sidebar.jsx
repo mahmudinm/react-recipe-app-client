@@ -237,6 +237,8 @@ class Sidebar extends React.Component {
                 </InputGroupAddon>
               </InputGroup>
             </Form>
+
+
             {/* Navigation */}
             <Nav navbar>
               <NavItem>
@@ -252,6 +254,17 @@ class Sidebar extends React.Component {
               </NavItem> 
               <NavItem>
                 <NavLink
+                  to={'/admin/ingredient'}
+                  onClick={this.closeCollapse}
+                  tag={NavLinkRRD}
+                  activeClassName="active"
+                >
+                  <i className="ni ni-tv-2 text-primary" />
+                  Ingredient
+                </NavLink>
+              </NavItem>    
+              <NavItem>
+                <NavLink
                   to={'/admin/users'}
                   onClick={this.closeCollapse}
                   tag={NavLinkRRD}
@@ -262,6 +275,8 @@ class Sidebar extends React.Component {
                 </NavLink>
               </NavItem>              
             </Nav>
+
+
             {/* Divider */}
             <hr className="my-3" />
             {/* Heading */}

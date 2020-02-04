@@ -6,9 +6,9 @@ import { TextInput } from "components/Formik/TextInput";
 import { Button } from 'reactstrap';
 import Loader from 'react-loader-spinner'
 
-const CategoryForm = ({ toggle, storeCategory, updateCategory }) => {
+const IngredientForm = ({ toggle, storeIngredient, updateIngredient }) => {
 
-  const category = useSelector(state => state.category.category); // untuk mengambil hasil action dari handleModal untuk create dan update
+  const ingredient = useSelector(state => state.ingredient.ingredient); // untuk mengambil hasil action dari handleModal untuk create dan update
 
   const initialValues = {
     name: ''
@@ -16,7 +16,7 @@ const CategoryForm = ({ toggle, storeCategory, updateCategory }) => {
 
   return (
     <Formik
-      initialValues={category.id ? category : initialValues}
+      initialValues={ingredient.id ? ingredient : initialValues}
       validationSchema={Yup.object({
         name: Yup.string()
           .required('Required')
@@ -24,23 +24,23 @@ const CategoryForm = ({ toggle, storeCategory, updateCategory }) => {
       enableReinitialize={true} // gunakan jika tidak ingin menggunakan toggle pada redux saga
       onSubmit={(data, actions) => {
         if(!data.id) {
-          storeCategory(data, actions, toggle)
+          storeIngredient(data, actions, toggle)
         } else {
-          updateCategory(data, data.id, actions, toggle)
+          updateIngredient(data, data.id, actions, toggle)
         }
       }}
     >
       {formik => (
         <Form>
           <TextInput
-            label="Category name"
+            label="Ingredient name"
             type="text"
             name="name"
-            placeholder="Enter name of category"
+            placeholder="Enter name of ingredient"
           />
           <div className="float-right">
             <Button type="submit" color="primary" disabled={formik.isSubmitting}>
-              { category.id ? 'UPDATE' : 'SAVE' }            
+              { ingredient.id ? 'UPDATE' : 'SAVE' }            
               <Loader
                  type="TailSpin"
                  color="#FFFFFF"
@@ -61,4 +61,4 @@ const CategoryForm = ({ toggle, storeCategory, updateCategory }) => {
 
 }
 
-export default CategoryForm;
+export default IngredientForm;
