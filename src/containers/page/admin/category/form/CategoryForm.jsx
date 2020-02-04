@@ -4,6 +4,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { TextInput } from "components/Formik/TextInput";
 import { Button } from 'reactstrap';
+import Loader from 'react-loader-spinner'
 
 const CategoryForm = ({ toggle, storeCategory, updateCategory }) => {
 
@@ -39,7 +40,15 @@ const CategoryForm = ({ toggle, storeCategory, updateCategory }) => {
           />
           <div className="float-right">
             <Button type="submit" color="primary" disabled={formik.isSubmitting}>
-              Save
+              {category.id ? 'UPDATE' : 'SAVE' }            
+              <Loader
+                 type="TailSpin"
+                 color="#FFFFFF"
+                 height={20}
+                 width={20}
+                 style={{ display: 'inline-block', marginLeft: '7px' }}
+                 visible={formik.isSubmitting}
+              />            
             </Button>
             <Button color="secondary" onClick={toggle}>
               Close
