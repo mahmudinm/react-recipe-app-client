@@ -13,16 +13,21 @@ import {
 } from "reactstrap";
 import CategoryForm from './CategoryForm.jsx';
 import {
-  storeCategoryRequest
+  storeCategoryRequest,
+  updateCategoryRequest
 } from "store/modules/category/actions";
 import { useDispatch } from 'react-redux';
 
-const CategoryFormPage = ({ modal, toggle, modalTitle, category }) => {
+const CategoryFormPage = ({ modal, toggle, modalTitle }) => {
 
   const dispatch = useDispatch();
 
   const storeCategory = (data, meta, toggle) => {
     dispatch(storeCategoryRequest(data, meta, toggle));
+  }
+
+  const updateCategory = (data, id, meta, toggle) => {
+    dispatch(updateCategoryRequest(data, id, meta, toggle));
   }
 
 	return (
@@ -31,7 +36,7 @@ const CategoryFormPage = ({ modal, toggle, modalTitle, category }) => {
         <ModalHeader toggle={toggle}>{modalTitle}</ModalHeader>
         <ModalBody>
           {/* Form Component */}
-          <CategoryForm toggle={toggle} category={category} storeCategory={storeCategory} />
+          <CategoryForm toggle={toggle} storeCategory={storeCategory} updateCategory={updateCategory} />
         </ModalBody>
       </Modal>
     </React.Fragment>

@@ -20,6 +20,23 @@ const category = (state = initialState, action ) => {
         ...state,
         categories: [...state.categories, action.payload.data]
       }
+    case 'EDIT_CATEGORY_REQUEST':
+      return {
+        ...state,
+        category: {}
+      }
+    case 'EDIT_CATEGORY_SUCCESS':
+      return {
+        ...state,
+        category: action.payload
+      }
+    case 'UPDATE_CATEGORY_SUCCESS':
+      const { data } = action.payload
+      return {
+        ...state,
+        category: [],
+        categories: state.categories.map(item => item.id === data.id ? data : item )
+      }
     default: return state;
   }
 }

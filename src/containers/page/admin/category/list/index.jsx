@@ -30,23 +30,24 @@ const CategoryListPage = () => {
   const categories = useSelector(state => state.category.categories); // untuk mengambil hasil fetch data dari useEffect
   const category = useSelector(state => state.category.category); // untuk mengambil hasil action dari handleModal untuk create dan update
 
-  // 
+  // open modal create 
   const handleModalCreate = () => {
-    toggle();
     setModalTitle("Create Form Data");
     dispatch(createCategoryRequest());
-  }
-  // 
-  const handleModalEdit = (id) => {
     toggle();
+  }
+
+  // open modal edit 
+  const handleModalEdit = (id) => {
     setModalTitle("Edit Form Data");
-    // dispatch(editCategoryRequest(id));
+    dispatch(editCategoryRequest(id));
+    toggle();
   }
 
 	return (
     <React.Fragment>
       {/* Modal Form */}
-      <CategoryFormPage modal={modal} toggle={toggle} modalTitle={modalTitle} category={category} />
+      <CategoryFormPage modal={modal} toggle={toggle} modalTitle={modalTitle} />
 
       <Header />      
       <Container className="mt--7" fluid>

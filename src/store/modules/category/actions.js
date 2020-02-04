@@ -23,14 +23,27 @@ export const storeCategorySuccess = (payload) => ({
   payload,
 })
 
-export const editCategory = (payload) => ({
-  type: 'EDIT_CATEGORY',
+export const editCategoryRequest = (payload) => ({
+  type: 'EDIT_CATEGORY_REQUEST',
+  payload // ini id
+})
+
+export const editCategorySuccess = (payload) => ({
+  type: 'EDIT_CATEGORY_SUCCESS',
   payload
 })
 
-export const updateCategory = (payload) => ({
-  type: 'UPDATE_CATEGORY',
-  payload
+export const updateCategoryRequest = (payload, id, meta, toggle) => ({
+  type: 'UPDATE_CATEGORY_REQUEST',
+  payload,
+  id,
+  meta,
+  toggle
+})
+
+export const updateCategorySuccess = (payload) => ({
+  type: 'UPDATE_CATEGORY_SUCCESS',
+  payload,
 })
 
 export const removeCategory = (payload) => ({

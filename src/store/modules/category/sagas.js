@@ -7,7 +7,8 @@ import {
   getCategoryRequest,
   getCategorySuccess,
   storeCategorySuccess,
-  updateCategory,
+  editCategorySuccess,
+  updateCategorySuccess,
   removeCategory
 } from './actions';
 
@@ -52,7 +53,51 @@ export function* storeCategory({
   }
 }
 
+// Edit data / ambil data dari edit url
+export function* editCategory({
+  payload, // ini id dari tombol/button edit
+}) {
+  try {
+
+    const response = yield call(
+      api.get, 
+      `admin/category/${payload}/edit`
+    )
+
+    yield put(editCategorySuccess(response.data));
+
+  } catch (err) {
+
+  }
+}
+
+// Update data 
+export function* updateCategory({
+  payload,
+  id,
+  meta: setSubmitting,
+  toggle
+}) {
+  try {
+    const { id, name } = payload;
+
+    const response = yield call(api.post, `admin/category/${id}`, {
+      name,
+      _method: 'PATCH' // untuk laravel ketika memakai resource route harus memakai untuk update (_method: PATCH/PUT)
+    })
+
+    yield put(updateCategorySuccess(response.data)) // ketika telah di update maka akan fetch ulang secara sync
+    yield put(getCategoryRequest()) // ketika telah di update maka akan fetch ulang secara async
+    toggle(); // tutup modal ketika telah berhasil di update
+
+  } catch (err) {
+    setSubmitting(false);
+  }
+}
+
 export default all([
   takeLatest('GET_CATEGORY_REQUEST', getCategory),
-  takeLatest('STORE_CATEGORY_REQUEST', storeCategory)
+  takeLatest('STORE_CATEGORY_REQUEST', storeCategory),
+  takeLatest('EDIT_CATEGORY_REQUEST', editCategory),
+  takeLatest('UPDATE_CATEGORY_REQUEST', updateCategory)
 ])
