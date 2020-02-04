@@ -18,7 +18,7 @@ export default function CategoryTable({ categories, handleModalEdit, deleteCateg
           <div>
              {/*<Link to={`/admin/category/${row.original.id}/edit`} className="btn btn-sm btn-primary">Edit</Link>*/}
              <Button onClick={() => handleModalEdit(row.original.id)} color="primary" size="sm" >Edit</Button>
-             <button onClick={() => deleteCategory(row.original.id)} className="btn btn-sm btn-danger">Delete</button>
+             <button onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) deleteCategory(row.original.id) }} className="btn btn-sm btn-danger">Delete</button>
           </div>
         )
       }

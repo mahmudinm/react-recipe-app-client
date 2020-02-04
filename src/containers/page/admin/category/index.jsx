@@ -16,13 +16,13 @@ import {
 } from "store/modules/category/actions";
 import Header from "components/Headers/Header.jsx";
 import CategoryTable from './CategoryTable.jsx';
-import CategoryFormPage from '../form';
+import CategoryFormPage from './Form';
 
 const CategoryListPage = () => {
 
   useEffect(() => {
     dispatch(getCategoryRequest()) // fetch data dari url / backend
-  }, [dispatch])
+  })
 
   const [modal, setModal] = useState(false); // untuk set modal false atau true
   const [modalTitle, setModalTitle] = useState(""); // untuk set title pada modal

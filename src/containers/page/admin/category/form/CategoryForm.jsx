@@ -22,8 +22,6 @@ const CategoryForm = ({ toggle, storeCategory, updateCategory }) => {
       })}
       enableReinitialize={true} // gunakan jika tidak ingin menggunakan toggle pada redux saga
       onSubmit={(data, actions) => {
-        console.log(data);
-        console.log(category);
         if(!data.id) {
           storeCategory(data, actions, toggle)
         } else {

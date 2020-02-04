@@ -5,9 +5,7 @@ import LayoutRoute from "components/Router/LayoutRoute";
 
 import AdminLayout from "containers/layouts/Admin";
 
-import CategoryListPage from "containers/page/admin/category/list";
-import CategoryFormPage from "containers/page/admin/category/form";
-
+import CategoryListPage from "containers/page/admin/category";
 import UsersListPage from "containers/page/admin/users/list";
 import UsersFormPage from "containers/page/admin/users/form";
 
@@ -17,8 +15,6 @@ const AdminRoute = () => {
     
       {/*Category*/}
       <LayoutRoute exact path="/admin/category" layout={AdminLayout} component={withAuth(CategoryListPage)} />
-      <LayoutRoute path="/admin/category/create" layout={AdminLayout} component={withAuth(CategoryFormPage)} />
-      <LayoutRoute path="/admin/category/:id/edit" layout={AdminLayout} component={withAuth(CategoryFormPage)} />
 
       {/*Users*/}
       <LayoutRoute exact path="/admin/users" layout={AdminLayout} component={withAuth(UsersListPage)} />
