@@ -96,7 +96,7 @@ export function* deleteCategory({ payload }) { // payload ini id
     yield put(deleteCategorySuccess(payload)); // update list data /sync data ketika telah berhasil secara langsung
 
     // const response = yield call(api.post, `admin/category/${payload}`, {
-    yield call(api.post, `admin/category/201`, {
+    yield call(api.post, `admin/category/${payload}`, {
       _method: 'DELETE' // ini method untuk laravel resource route untuk delete
     })
 
