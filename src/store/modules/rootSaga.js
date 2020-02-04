@@ -4,6 +4,7 @@ import auth from './auth/sagas';
 import category from './category/sagas';
 import ingredient from './ingredient/sagas';
 import permission from './permission/sagas';
+import role from './role/sagas';
 
 export default function* rootSaga() {
   return yield all([
@@ -11,5 +12,6 @@ export default function* rootSaga() {
     category,
     ingredient,
     permission,
+    role,
   ]);
 }

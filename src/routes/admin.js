@@ -8,6 +8,7 @@ import AdminLayout from "containers/layouts/Admin";
 import CategoryListPage from "containers/page/admin/category";
 import IngredientListPage from "containers/page/admin/ingredient";
 import PermissionListPage from "containers/page/admin/permission";
+import RoleListPage from "containers/page/admin/role";
 import UsersListPage from "containers/page/admin/users/list";
 
 const AdminRoute = () => {
@@ -22,6 +23,9 @@ const AdminRoute = () => {
 
       {/*Permission Page*/}
       <LayoutRoute exact path="/admin/permission" layout={AdminLayout} component={withAuth(PermissionListPage)} />
+
+      {/*Permission Page*/}
+      <LayoutRoute exact path="/admin/role" layout={AdminLayout} component={withAuth(RoleListPage)} />
 
       {/*Users*/}
       <LayoutRoute exact path="/admin/users" layout={AdminLayout} component={withAuth(UsersListPage)} />
