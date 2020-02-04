@@ -3,7 +3,10 @@ import ReactDOM from "react-dom";
 import { Router } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-
+import { ToastContainer } from 'react-toastify';
+// import toast
+import 'react-toastify/dist/ReactToastify.css';
+// import assets
 import "assets/vendor/nucleo/css/nucleo.css";
 import "assets/vendor/@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/scss/argon-dashboard-react.scss";
@@ -23,6 +26,7 @@ ReactDOM.render(
       <Router history={history}>
         <MainRoute />
         <AdminRoute />
+        <ToastContainer autoClose={2500} />
       </Router>
     </PersistGate>
   </Provider>,

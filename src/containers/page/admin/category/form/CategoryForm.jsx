@@ -40,7 +40,7 @@ const CategoryForm = ({ toggle, storeCategory, updateCategory }) => {
           />
           <div className="float-right">
             <Button type="submit" color="primary" disabled={formik.isSubmitting}>
-              {category.id ? 'UPDATE' : 'SAVE' }            
+              { category.id ? 'UPDATE' : 'SAVE' }            
               <Loader
                  type="TailSpin"
                  color="#FFFFFF"

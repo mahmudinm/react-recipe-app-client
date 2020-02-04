@@ -40,7 +40,7 @@ const category = (state = initialState, action ) => {
     case 'DELETE_CATEGORY_SUCCESS':
       return {
         ...state,
-        categories: state.categories.filter(item => item.id !== parseInt(action.payload.data.id))
+        categories: state.categories.filter(item => item.id !== parseInt(action.payload))
       }
     default: return state;
   }
