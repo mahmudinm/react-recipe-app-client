@@ -46,9 +46,14 @@ export const updateCategorySuccess = (payload) => ({
   payload,
 })
 
-export const removeCategory = (payload) => ({
-  type: 'REMOVE_CATEGORY',
-  payload
+export const deleteCategoryRequest = (payload) => ({
+  type: 'DELETE_CATEGORY_REQUEST',
+  payload // ini id 
+})
+
+export const deleteCategorySuccess = (payload) => ({
+  type: 'DELETE_CATEGORY_SUCCESS',
+  payload // ini id 
 })
 
 

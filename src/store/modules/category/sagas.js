@@ -9,7 +9,7 @@ import {
   storeCategorySuccess,
   editCategorySuccess,
   updateCategorySuccess,
-  removeCategory
+  deleteCategorySuccess
 } from './actions';
 
 // Fetch DATA
@@ -95,9 +95,28 @@ export function* updateCategory({
   }
 }
 
+export function* deleteCategory({
+  payload // ini id
+}) {
+  try {
+
+    const response = yield call(api.post, `admin/category/${payload}`, {
+      _method: 'DELETE'
+    })
+
+    yield put(deleteCategorySuccess(response.data)); // update list data /sync data ketika telah berhasil
+    yield put(getCategoryRequest()) // ketika telah di update maka akan fetch ulang secara async
+
+
+  } catch (err) {
+
+  }
+}
+
 export default all([
   takeLatest('GET_CATEGORY_REQUEST', getCategory),
   takeLatest('STORE_CATEGORY_REQUEST', storeCategory),
   takeLatest('EDIT_CATEGORY_REQUEST', editCategory),
-  takeLatest('UPDATE_CATEGORY_REQUEST', updateCategory)
+  takeLatest('UPDATE_CATEGORY_REQUEST', updateCategory),
+  takeLatest('DELETE_CATEGORY_REQUEST', deleteCategory)
 ])

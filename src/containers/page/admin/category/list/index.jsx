@@ -11,7 +11,8 @@ import {
 import { 
   getCategoryRequest, 
   createCategoryRequest,
-  editCategoryRequest 
+  editCategoryRequest,
+  deleteCategoryRequest,
 } from "store/modules/category/actions";
 import Header from "components/Headers/Header.jsx";
 import CategoryTable from './CategoryTable.jsx';
@@ -20,7 +21,7 @@ import CategoryFormPage from '../form';
 const CategoryListPage = () => {
 
   useEffect(() => {
-    dispatch(getCategoryRequest())
+    dispatch(getCategoryRequest()) // fetch data dari url / backend
   }, [dispatch])
 
   const [modal, setModal] = useState(false); // untuk set modal false atau true
@@ -44,6 +45,11 @@ const CategoryListPage = () => {
     toggle();
   }
 
+  // handle delete data
+  const deleteCategory = (id) => {
+    dispatch(deleteCategoryRequest(id))
+  }
+
 	return (
     <React.Fragment>
       {/* Modal Form */}
@@ -63,7 +69,7 @@ const CategoryListPage = () => {
               <CardBody>
 
                 {/* Table component */}
-                <CategoryTable categories={categories} handleModalEdit={handleModalEdit} />
+                <CategoryTable categories={categories} handleModalEdit={handleModalEdit} deleteCategory={deleteCategory} />
 
               </CardBody>
             </Card>
