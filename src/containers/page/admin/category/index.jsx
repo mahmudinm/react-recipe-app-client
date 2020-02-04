@@ -21,7 +21,8 @@ import CategoryFormPage from './Form';
 const CategoryListPage = () => {
 
   useEffect(() => {
-    dispatch(getCategoryRequest()) // fetch data dari url / backend
+    document.title = 'Category Page';
+    dispatch(getCategoryRequest()); // fetch data dari url / backend
   })
 
   const [modal, setModal] = useState(false); // untuk set modal false atau true

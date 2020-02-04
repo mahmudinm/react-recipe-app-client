@@ -7,6 +7,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import "assets/vendor/nucleo/css/nucleo.css";
 import "assets/vendor/@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/scss/argon-dashboard-react.scss";
+// Import spinner
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 import history from './utils/history';
 

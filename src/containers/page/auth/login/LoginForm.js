@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { TextInput } from "components/Formik/TextInput";
+import Loader from 'react-loader-spinner'
 
 const LoginForm = ({ handleLogin }) => {
 
@@ -39,6 +40,14 @@ const LoginForm = ({ handleLogin }) => {
           {formik.status ? <div className="alert alert-danger">{formik.status}</div> : null}
           <button type="submit" className="btn btn-primary btn-block" disabled={formik.isSubmitting}>
             LOGIN
+            <Loader
+               type="TailSpin"
+               color="#FFFFFF"
+               height={20}
+               width={20}
+               style={{ display: 'inline-block', marginLeft: '7px' }}
+               visible={formik.isSubmitting}
+            />            
           </button>
         </Form>
       )}
