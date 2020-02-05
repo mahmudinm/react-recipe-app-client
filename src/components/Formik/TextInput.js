@@ -10,11 +10,11 @@ export const TextInput = ({ label, ...props }) => {
           className="form-label"
           htmlFor={props.id || props.name}>{label}</label>
         <input  
-              className={
-                meta.touched && meta.error ? 'form-control is-invalid' : 'form-control'
-              }       
-              {...field}
-              {...props}
+          className={
+            meta.touched && meta.error ? 'form-control is-invalid' : 'form-control'
+          }       
+          {...field}
+          {...props}
         />
         {meta.touched && meta.error ? (
           <div className="invalid-feedback">{meta.error}</div>
