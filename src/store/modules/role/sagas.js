@@ -25,7 +25,7 @@ export function* getRole() {
     
     yield put(getRoleSuccess(ingredients))
   } catch (err) {
-    console.log(err);
+    toast.error('Server error');
   }
 }
 
@@ -40,7 +40,6 @@ export function* createRole() {
     const permissions = response.data
 
     yield put(createRoleSuccess(permissions));
-    console.log(permissions);
   } catch (err) {
     toast.error('Ada masalah di server');
   }
@@ -53,10 +52,11 @@ export function* storeRole({
   toggle
 }) {
   try {
-    const { name } = payload; 
+    const { name, permissions } = payload; 
 
     const response = yield call(api.post, 'admin/roles', {
-      name
+      name,
+      permissions
     });
 
     yield put(storeRoleSuccess(response.data)) // ketika telah di save maka akan fetch ulang secara sync
@@ -91,10 +91,11 @@ export function* updateRole({
   toggle
 }) {
   try {
-    const { id, name } = payload;
+    const { id, name, permissions } = payload;
 
     const response = yield call(api.post, `admin/roles/${id}`, {
       name,
+      permissions,
       _method: 'PATCH' // untuk laravel ketika memakai resource route harus memakai untuk update (_method: PATCH/PUT)
     })
 

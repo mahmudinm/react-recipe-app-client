@@ -51,14 +51,18 @@ const RoleForm = ({ toggle, storeRole, updateRole }) => {
           ),
       })}
       enableReinitialize={true} // gunakan jika tidak ingin menggunakan toggle secara async pada redux saga
-      onSubmit={(data, actions) => {
-        console.log(data);
-        // if(!data.id) {
-        //   // storeRole(data, actions, toggle)
-        //   console.log(data);
-        // } else {
-        //   // updateRole(data, data.id, actions, toggle)
-        // }
+      onSubmit={(data, meta) => {
+        // untuk hanya mereturn data yang di perlukan / mengcustom data yang akan dikirim
+        const payload = {
+          ...data,
+          permissions: data.permissions.map(permission => permission.value)
+        }
+
+        if(!data.id) {
+          storeRole(payload, meta, toggle)
+        } else {
+          updateRole(payload, data.id, meta, toggle)
+        }
       }}
     >
       {formik => (
