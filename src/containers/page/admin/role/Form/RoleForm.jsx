@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { TextInput } from "components/Formik/TextInput";
-import { SelectInput } from "components/Formik/SelectInput";
+import { ReactSelectInput } from "components/Formik/ReactSelectInput";
 import { Button } from 'reactstrap';
 import Loader from 'react-loader-spinner'
 
@@ -73,7 +73,7 @@ const RoleForm = ({ toggle, storeRole, updateRole }) => {
             name="name"
             placeholder="Enter name of Role"
           />
-          <SelectInput
+          <ReactSelectInput
             label="Select Permissions"
             name="permissions"
             options={options}

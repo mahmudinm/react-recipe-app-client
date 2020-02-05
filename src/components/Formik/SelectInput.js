@@ -1,38 +1,27 @@
 import React from 'react';
-import Select from 'react-select';
+import { useField } from 'formik';
 
-export const SelectInput = ({ options, label, onChange, onBlur, ...props}) => {
-
-  const handleChange = (value) => {
-    onChange(props.name, value);
-  }
-
-  const handleBlur = () => {
-    onBlur(props.name, true);
-  }
-
+export const SelectInput = ({ label, children, ...props }) => {
+  const [field, meta] = useField(props);
   return (
-    <div className="form-group">
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <Select
-        isMulti
-        id={props.id}
-        options={options}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={props.value}
-        styles={{
-          control: styles => ({
-            ...styles,
-            borderColor: props.touched && props.error ? '#fb6340' : '#8898aa'
-          })
-        }} 
-      />      
-      {props.touched && props.error ? (
-        <div style={{ color: '#fb6340', width: '100%', marginTop: '0.25rem', fontSize: '80%' }}>
-        {props.error}
-        </div>
-      ) : null}
-    </div>  
+    <>
+      <div className="form-group">
+        <label 
+          className="form-label"
+          htmlFor={props.id || props.name}>{label}</label>
+        <select 
+              className={
+                meta.touched && meta.error ? 'form-control is-invalid' : 'form-control'
+              }       
+              {...field}
+              {...props}
+        >
+          {children}
+        </select>
+        {meta.touched && meta.error ? (
+          <div className="invalid-feedback">{meta.error}</div>
+        ) : null}
+      </div>  
+    </>
   )
 } 
