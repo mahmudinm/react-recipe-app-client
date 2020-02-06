@@ -9,6 +9,7 @@ import CategoryListPage from "containers/page/admin/category";
 import IngredientListPage from "containers/page/admin/ingredient";
 import PermissionListPage from "containers/page/admin/permission";
 import RoleListPage from "containers/page/admin/role";
+import UserListPage from "containers/page/admin/user";
 
 const AdminRoute = () => {
   return (
@@ -20,11 +21,15 @@ const AdminRoute = () => {
       {/*Ingredient Page*/}
       <LayoutRoute exact path="/admin/ingredient" layout={AdminLayout} component={withAuth(IngredientListPage)} />
 
+      {/*User Page*/}
+      <LayoutRoute exact path="/admin/user" layout={AdminLayout} component={withAuth(UserListPage)} />
+
       {/*Permission Page*/}
       <LayoutRoute exact path="/admin/permission" layout={AdminLayout} component={withAuth(PermissionListPage)} />
 
       {/*Permission Page*/}
       <LayoutRoute exact path="/admin/role" layout={AdminLayout} component={withAuth(RoleListPage)} />
+
 
     </Switch>
   )

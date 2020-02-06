@@ -1,6 +1,7 @@
 const initialState = {
   users: [],
-  user: {}
+  user: {},
+  roles: []
 }
 
 const user = (state = initialState, action ) => {
@@ -15,6 +16,11 @@ const user = (state = initialState, action ) => {
         ...state,
         user: {}
       }
+    case 'CREATE_USER_SUCCESS':
+      return {
+        ...state,
+        roles: action.payload
+      }
     case 'STORE_USER_SUCCESS':
       return {
         ...state,
@@ -28,7 +34,8 @@ const user = (state = initialState, action ) => {
     case 'EDIT_USER_SUCCESS':
       return {
         ...state,
-        user: action.payload
+        user: action.payload.user,
+        roles: action.payload.roles
       }
     case 'UPDATE_USER_SUCCESS':
       const { data } = action.payload

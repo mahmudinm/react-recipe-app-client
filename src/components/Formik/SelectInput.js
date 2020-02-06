@@ -9,12 +9,12 @@ export const SelectInput = ({ label, children, ...props }) => {
         <label 
           className="form-label"
           htmlFor={props.id || props.name}>{label}</label>
-        <select 
-              className={
-                meta.touched && meta.error ? 'form-control is-invalid' : 'form-control'
-              }       
-              {...field}
-              {...props}
+        <select           
+          className={
+            meta.touched && meta.error ? 'form-control is-invalid' : 'form-control'
+          }       
+          {...field}
+          {...props}
         >
           {children}
         </select>

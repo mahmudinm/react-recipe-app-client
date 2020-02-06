@@ -11,6 +11,11 @@ export const createUserRequest = () => ({
   type: 'CREATE_USER_REQUEST',
 })
 
+export const createUserSuccess = (payload) => ({
+  type: 'CREATE_USER_SUCCESS',
+  payload
+})
+
 export const storeUserRequest = (payload, meta, toggle) => ({
   type: 'STORE_USER_REQUEST',
   payload,

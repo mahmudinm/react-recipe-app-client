@@ -7,32 +7,36 @@ import { ReactSelectInput } from "components/Formik/ReactSelectInput";
 import { Button } from 'reactstrap';
 import Loader from 'react-loader-spinner'
 
-const RoleForm = ({ toggle, storeRole, updateRole }) => {
+const UserForm = ({ toggle, storeUser, updateUser }) => {
 
-  const role = useSelector(state => state.role.role); // mengambil data dari redux untuk edit update
-  const permissions = useSelector(state => state.role.permissions); // mengambil data permission dari redux untuk react-select 
+  const user = useSelector(state => state.user.user); // mengambil data dari redux untuk edit update
+  const roles = useSelector(state => state.user.roles); // mengambil data role dari redux untuk react-select 
   // buat options untuk react-select dengan perulangan map
-  let options = permissions.map((permission) => {
-    return { value: permission.id, label: permission.name }
+  let options = roles.map((role) => {
+    return { value: role.id, label: role.name }
   });
 
   let editData = []; // buat data kosong untuk data edit dan update
 
   // jika edit maka di eksekusi 
-  if (role.id) {
+  if (user.id) {
     // buat custom data sendiri untuk update / edit
     editData = {
-      id: role.id,
-      name: role.name,
-      permissions: role.permissions.map((permission) => {
-        return { value: permission.id, label: permission.name }
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: '',
+      roles: user.roles.map((role) => {
+        return { value: role.id, label: role.name }
       })
     }
   }
 
   const initialValues = {
     name: '',
-    permissions: []
+    email: '',
+    password: '',
+    roles: []
   };
 
   return (
@@ -41,51 +45,61 @@ const RoleForm = ({ toggle, storeRole, updateRole }) => {
       validationSchema={Yup.object({
         name: Yup.string()
           .required('Required'),
-        permissions: Yup.array()
+        email: Yup.string()
+          .email('Must be an email')
+          .required('Required'),
+        password: editData.id ? null : Yup.string().required('Required'),
+        roles: Yup.array()
           .min(1, 'Pick at least 1 tags')
           .of(
             Yup.object().shape({
               value: Yup.string().required(),
               label: Yup.string().required(),
             })
-          ),
+          ),          
       })}
-      enableReinitialize={true} // gunakan jika tidak ingin menggunakan toggle secara async pada redux saga
+      enableReinitialize={true} // gunakan jika tidak ingin menggunakan toggle pada redux saga
       onSubmit={(data, meta) => {
-        // untuk hanya mereturn data yang di perlukan / mengcustom data yang akan dikirim
-        const payload = {
-          ...data,
-          permissions: data.permissions.map(permission => permission.value)
-        }
-
         if(!data.id) {
-          storeRole(payload, meta, toggle)
+          storeUser(data, meta, toggle)
         } else {
-          updateRole(payload, data.id, meta, toggle)
+          updateUser(data, data.id, meta, toggle)
         }
       }}
     >
       {formik => (
         <Form>
           <TextInput
-            label="Role name"
+            label="Name"
             type="text"
             name="name"
-            placeholder="Enter name of Role"
+            placeholder="Enter name of user"
+          />
+          <TextInput
+            label="Email"
+            type="email"
+            name="email"
+            placeholder="Enter email of user"
+          />
+          <TextInput
+            label="Password"
+            type="password"
+            name="password"
+            placeholder="Enter password of user"
           />
           <ReactSelectInput
-            label="Select Permissions"
-            name="permissions"
+            label="Select Roles"
+            name="roles"
             options={options}
-            value={formik.values.permissions}
+            value={formik.values.roles}
             onChange={formik.setFieldValue}
             onBlur={formik.setFieldTouched}
-            error={formik.errors.permissions}
-            touched={formik.touched.permissions}
+            error={formik.errors.roles}
+            touched={formik.touched.roles}
           />
           <div className="float-right">
             <Button type="submit" color="primary" disabled={formik.isSubmitting}>
-              { role.id ? 'UPDATE' : 'SAVE' }            
+              { user.id ? 'UPDATE' : 'SAVE' }            
               <Loader
                  type="TailSpin"
                  color="#FFFFFF"
@@ -106,4 +120,4 @@ const RoleForm = ({ toggle, storeRole, updateRole }) => {
 
 }
 
-export default RoleForm;
+export default UserForm;

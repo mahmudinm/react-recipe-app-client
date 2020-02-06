@@ -265,17 +265,6 @@ class Sidebar extends React.Component {
               </NavItem>    
               <NavItem>
                 <NavLink
-                  to={'/admin/users'}
-                  onClick={this.closeCollapse}
-                  tag={NavLinkRRD}
-                  activeClassName="active"
-                >
-                  <i className="ni ni-tv-2 text-primary" />
-                  Users
-                </NavLink>
-              </NavItem>  
-              <NavItem>
-                <NavLink
                   to={'/admin/permission'}
                   onClick={this.closeCollapse}
                   tag={NavLinkRRD}
@@ -294,6 +283,17 @@ class Sidebar extends React.Component {
                 >
                   <i className="ni ni-tv-2 text-primary" />
                   Role
+                </NavLink>
+              </NavItem>              
+              <NavItem>
+                <NavLink
+                  to={'/admin/user'}
+                  onClick={this.closeCollapse}
+                  tag={NavLinkRRD}
+                  activeClassName="active"
+                >
+                  <i className="ni ni-tv-2 text-primary" />
+                  User
                 </NavLink>
               </NavItem>              
             </Nav>

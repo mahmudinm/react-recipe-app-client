@@ -2,7 +2,7 @@ import React from 'react'
 import Table from "components/ReactTable/Table"
 import { Button } from 'reactstrap';
 
-export default function PermissionTable({ permissions, handleModalEdit, deletePermission }) {
+export default function UserTable({ users, handleModalEdit, deleteUser }) {
 
   const columns = React.useMemo(
     () => [ 
@@ -17,17 +17,17 @@ export default function PermissionTable({ permissions, handleModalEdit, deletePe
         Cell: ({row}) => (
           <div>
              <Button onClick={() => handleModalEdit(row.original.id)} color="primary" size="sm" >Edit</Button>
-             <button onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) deletePermission(row.original.id) }} className="btn btn-sm btn-danger">Delete</button>
+             <button onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) deleteUser(row.original.id) }} className="btn btn-sm btn-danger">Delete</button>
           </div>
         )
       }
     ],
-    [handleModalEdit, deletePermission]
+    [handleModalEdit, deleteUser]
   )
 
   return (
     <React.Fragment>
-      <Table columns={columns} data={permissions} />
+      <Table columns={columns} data={users} />
     </React.Fragment>
   )
 }
