@@ -243,6 +243,17 @@ class Sidebar extends React.Component {
             <Nav navbar>
               <NavItem>
                 <NavLink
+                  to={'/admin/recipe'}
+                  onClick={this.closeCollapse}
+                  tag={NavLinkRRD}
+                  activeClassName="active"
+                >
+                  <i className="ni ni-tv-2 text-primary" />
+                  Recipe
+                </NavLink>
+              </NavItem> 
+              <NavItem>
+                <NavLink
                   to={'/admin/category'}
                   onClick={this.closeCollapse}
                   tag={NavLinkRRD}

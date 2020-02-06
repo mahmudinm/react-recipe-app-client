@@ -5,6 +5,7 @@ import LayoutRoute from "components/Router/LayoutRoute";
 
 import AdminLayout from "containers/layouts/Admin";
 
+import RecipeListPage from "containers/page/admin/recipe";
 import CategoryListPage from "containers/page/admin/category";
 import IngredientListPage from "containers/page/admin/ingredient";
 import PermissionListPage from "containers/page/admin/permission";
@@ -14,6 +15,9 @@ import UserListPage from "containers/page/admin/user";
 const AdminRoute = () => {
   return (
     <Switch>
+    
+      {/*Category Page*/}
+      <LayoutRoute exact path="/admin/recipe" layout={AdminLayout} component={withAuth(RecipeListPage)} />
     
       {/*Category Page*/}
       <LayoutRoute exact path="/admin/category" layout={AdminLayout} component={withAuth(CategoryListPage)} />
