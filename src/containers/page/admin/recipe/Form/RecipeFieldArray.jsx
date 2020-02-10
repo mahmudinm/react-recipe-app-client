@@ -59,6 +59,7 @@ const RecipeFieldArray = ({ formik, ingredients }) => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     >
+                      <option value="">--Select Ingredient--</option>
                       {ingredients.map((item, key) => 
                         <option value={item.id} key={key}>{item.name}</option>
                       )}

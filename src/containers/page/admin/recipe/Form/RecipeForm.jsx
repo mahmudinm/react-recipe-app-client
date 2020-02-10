@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Formik, Form, FieldArray, getIn } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { TextInput } from "components/Formik/TextInput";
 import { SelectInput } from "components/Formik/SelectInput";
@@ -22,19 +22,30 @@ const RecipeForm = ({ toggle, storeRecipe, updateRecipe }) => {
     category_id: '',
     ingredients: [
       {
-        ingredient_id: 2,
-        quantity: 'asdasd'
-      },
-      {
-        ingredient_id: 1,
-        quantity: 'asdasd'
+        ingredient_id: '',
+        quantity: ''
       }
     ]
   };
 
+  // buat custom data untuk edit karena data pivot tak bisa langsung di panggil
+  let editData = {};  
+  if (recipe.id) {
+    editData = {
+      id: recipe.id,
+      name: recipe.name,
+      image: recipe.image,
+      step: recipe.step,
+      category_id: recipe.category_id,
+      ingredients: recipe.ingredients.map((item) => {
+        return { ingredient_id: item.pivot.ingredient_id, quantity: item.pivot.quantity }
+      })
+    };
+  };
+
   return (
     <Formik
-      initialValues={recipe.id ? recipe : initialValues}
+      initialValues={editData.id ? editData : initialValues}
       validationSchema={Yup.object({
         name: Yup.string()
           .required('Required'),
@@ -53,12 +64,12 @@ const RecipeForm = ({ toggle, storeRecipe, updateRecipe }) => {
       })}
       enableReinitialize={true} // gunakan jika tidak ingin menggunakan toggle pada redux saga
       onSubmit={(data, meta) => {
-        console.log(data);
-        // if(!data.id) {
-        //   storeRecipe(data, meta, toggle)
-        // } else {
-        //   updateRecipe(data, data.id, meta, toggle)
-        // }
+        // console.log(data);
+        if(!data.id) {
+          storeRecipe(data, meta, toggle)
+        } else {
+          updateRecipe(data, data.id, meta, toggle)
+        }
       }}
     >
       {formik => (
@@ -72,6 +83,9 @@ const RecipeForm = ({ toggle, storeRecipe, updateRecipe }) => {
               className="form-control" 
               onChange={(e) => formik.setFieldValue('image', e.currentTarget.files[0])}
             />
+            { 
+              formik.values.image && <img className="img img-rounded" style={{ width: '200px' }} src={`http://localhost:8000/image/${formik.values.image}`} alt={formik.values.image}/>
+            }
           </div>
           <div className="row">
             <div className="col-md-6">

@@ -11,12 +11,20 @@ const UserForm = ({ toggle, storeUser, updateUser }) => {
 
   const user = useSelector(state => state.user.user); // mengambil data dari redux untuk edit update
   const roles = useSelector(state => state.user.roles); // mengambil data role dari redux untuk react-select 
+
+  const initialValues = {
+    name: '',
+    email: '',
+    password: '',
+    roles: []
+  };
+
   // buat options untuk react-select dengan perulangan map
   let options = roles.map((role) => {
     return { value: role.id, label: role.name }
   });
 
-  let editData = []; // buat data kosong untuk data edit dan update
+  let editData = {}; // buat data kosong untuk data edit dan update
 
   // jika edit maka di eksekusi 
   if (user.id) {
@@ -30,14 +38,7 @@ const UserForm = ({ toggle, storeUser, updateUser }) => {
         return { value: role.id, label: role.name }
       })
     }
-  }
-
-  const initialValues = {
-    name: '',
-    email: '',
-    password: '',
-    roles: []
-  };
+  }  
 
   return (
     <Formik

@@ -29,6 +29,7 @@ export function* getRecipe() {
   }
 }
 
+// Create atau open modal create recipe
 export function* createRecipe() {
   try {
     const response = yield call(
@@ -51,13 +52,19 @@ export function* storeRecipe({
   toggle
 }) {
   try {
-    const { name, email, password, roles } = payload; 
+    const { image, name, category_id, step, ingredients } = payload; 
 
-    const response = yield call(api.post, 'admin/recipe', {
-      name,
-      email,
-      password,
-      roles
+    const formData = new FormData();
+    formData.append('image', image);
+    formData.append('name', name);
+    formData.append('category_id', category_id);
+    formData.append('step', step);
+    formData.append('ingredients', JSON.stringify(ingredients));
+
+    const response = yield call(api.post, 'admin/recipe', formData, {
+      headers: { 
+        'Content-Type': 'mutlipart/form-data' 
+      }
     });
 
     yield put(storeRecipeSuccess(response.data)) // ketika telah di save maka akan fetch ulang secara sync
@@ -65,8 +72,8 @@ export function* storeRecipe({
     toast.success('Berhasil tambah data'); 
     toggle(); // tutup modal ketika telah berhasil di save
   } catch (err) {
-    setFieldError('email', err.response.data.error.errors.email);
-    toast.error('Gagal tambah data'); 
+    // setFieldError('email', err.response.data.error.errors.email);
+    // toast.error('Gagal tambah data'); 
     setSubmitting(false); // setSubmit false pada form supaya enable setelah terima error
   }
 }
@@ -93,14 +100,21 @@ export function* updateRecipe({
   toggle
 }) {
   try {
-    const { id, name, email, password, roles } = payload;
+    const { id, image, name, category_id, step, ingredients } = payload; 
 
-    const response = yield call(api.post, `admin/recipe/${id}`, {
-      name, 
-      email, 
-      password, 
-      roles,
-      _method: 'PATCH' // untuk laravel ketika memakai resource route harus memakai untuk update (_method: PATCH/PUT)
+    const formData = new FormData();
+    formData.append('id', id);
+    formData.append('image', image);
+    formData.append('name', name);
+    formData.append('category_id', category_id);
+    formData.append('step', step);
+    formData.append('ingredients', JSON.stringify(ingredients));
+    formData.append('_method', 'PATCH');
+
+    const response = yield call(api.post, `admin/recipe/${id}`, formData, {
+      headers: { 
+        'Content-Type': 'mutlipart/form-data' 
+      }
     })
 
     yield put(updateRecipeSuccess(response.data)) // ketika telah di update maka akan fetch ulang secara sync
@@ -108,7 +122,7 @@ export function* updateRecipe({
     toast.success('Berhasil update data'); 
     toggle(); // tutup modal ketika telah berhasil di update
   } catch (err) {
-    setFieldError('email', err.response.data.error.errors.email);
+    // setFieldError('email', err.response.data.error.errors.email);
     toast.error('Gagal update data'); 
     setSubmitting(false);
   }
