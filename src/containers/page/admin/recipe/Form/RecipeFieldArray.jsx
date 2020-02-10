@@ -64,6 +64,9 @@ const RecipeFieldArray = ({ formik, ingredients }) => {
                         <option value={item.id} key={key}>{item.name}</option>
                       )}
                     </select>
+                    { touchedIngredient_id && errorsIngredient_id ? (
+                      <div className="invalid-feedback">{errorsIngredient_id}</div>
+                    ) : null }                    
                   </div>
                 </div>
 
@@ -80,6 +83,9 @@ const RecipeFieldArray = ({ formik, ingredients }) => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
+                    { touchedQuantity && errorsQuantity ? (
+                      <div className="invalid-feedback">{errorsQuantity}</div>
+                    ) : null }
                   </div>
                 </div>
 

@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { TextInput } from "components/Formik/TextInput";
 import { SelectInput } from "components/Formik/SelectInput";
 import { TextAreaInput } from "components/Formik/TextAreaInput";
+import { FileInput } from "components/Formik/FileInput";
 import { Button } from 'reactstrap';
 import Loader from 'react-loader-spinner'
 import RecipeFieldArray from './RecipeFieldArray';
@@ -14,6 +15,13 @@ const RecipeForm = ({ toggle, storeRecipe, updateRecipe }) => {
   const recipe = useSelector(state => state.recipe.recipe); // mengambil data dari redux untuk edit update
   const ingredients = useSelector(state => state.recipe.ingredients); 
   const categories = useSelector(state => state.recipe.categories); 
+  const FILE_SIZE = 1000 * 1024;
+  const SUPPORTED_FORMATS = [
+    "image/jpg",
+    "image/jpeg",
+    "image/gif",
+    "image/png",
+  ]
 
   const initialValues = {
     name: '',
@@ -49,6 +57,14 @@ const RecipeForm = ({ toggle, storeRecipe, updateRecipe }) => {
       validationSchema={Yup.object({
         name: Yup.string()
           .required('Required'),
+        image: editData.id ? null : Yup.mixed()
+          .required('Required')
+          .test("fileSize", 
+                "File Is To Large", 
+                value => value && value.size <= FILE_SIZE )
+          .test("fileFormat",
+                "Unsupported Format",
+                value => value && SUPPORTED_FORMATS.includes(value.type)),
         category_id: Yup.string()
           .required('Required'),
         step: Yup.string()
@@ -74,19 +90,17 @@ const RecipeForm = ({ toggle, storeRecipe, updateRecipe }) => {
     >
       {formik => (
         <Form>
-
-          <div className="form-group">
-            <label htmlFor="image">Image</label>
-            <input 
-              type="file" 
-              name="image" 
-              className="form-control" 
-              onChange={(e) => formik.setFieldValue('image', e.currentTarget.files[0])}
-            />
-            { 
-              formik.values.image && <img className="img img-rounded" style={{ width: '200px' }} src={`http://localhost:8000/image/${formik.values.image}`} alt={formik.values.image}/>
+          <FileInput
+            label={
+              editData.id ? "Image ('biarkan bilak tidak mau ganti gambar')" : "Image"
             }
-          </div>
+            name="image"
+            value={formik.values.image}
+            onChange={formik.setFieldValue}
+            onBlur={formik.setFieldTouched}
+            error={formik.errors.image}
+            touched={formik.touched.image}
+          />
           <div className="row">
             <div className="col-md-6">
               <TextInput

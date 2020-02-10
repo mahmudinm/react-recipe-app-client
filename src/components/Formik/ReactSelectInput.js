@@ -30,7 +30,7 @@ export const ReactSelectInput = ({ options, label, onChange, onBlur, ...props}) 
       />      
       {props.touched && props.error ? (
         <div style={{ color: '#fb6340', width: '100%', marginTop: '0.25rem', fontSize: '80%' }}>
-        {props.error}
+          {props.error}
         </div>
       ) : null}
     </div>  
