@@ -30,8 +30,6 @@ api.interceptors.response.use((response) => {
 
       console.log('redirect ke halaman login')
       // redirect paka react-router-dom ga bisa ga tau kenapa 
-      return window.location.href = '/';
-      // reject(error);
     })
   } else if ( error.response.status === 500 && error.response.data.error.message === 'The token has been blacklisted' ) {
     console.log('jwt di hapus dan logout kehalaman login');
@@ -43,9 +41,6 @@ api.interceptors.response.use((response) => {
       // history.push('/login');
 
       console.log('redirect ke halaman login')
-      // redirect paka react-router-dom ga bisa ga tau kenapa 
-      return window.location.href = '/';
-      // reject(error);
     })    
   }
 
@@ -53,7 +48,6 @@ api.interceptors.response.use((response) => {
 
   // refresh jwt jika error 401 dan mesage jwt has expired
   if(error.response.status === 401 && error.response.data.error.message === 'Token has expired') {
-    console.log('the jwt must be refreshed');
     return api.post('auth/refresh', null)
       .then((res) => {
         console.log(res)
@@ -73,18 +67,9 @@ api.interceptors.response.use((response) => {
         Promise.reject(error);
       })
   } else if ( error.response.status === 401 && error.response.data.error.message === 'The token has been blacklisted' ) {
-    console.log('jwt di hapus dan logout kehalaman login');
-    console.log(error.response);
     store.dispatch(logout());
 
     return new Promise((resolve, reject) => {
-      // history nya belom bisa ngepush ke halaman cuma linknya doang terupdate
-      // history.push('/login');
-
-      console.log('redirect ke halaman login')
-      // redirect paka react-router-dom ga bisa ga tau kenapa 
-      return window.location.href = '/';
-      // reject(error);
     })    
   }
 
