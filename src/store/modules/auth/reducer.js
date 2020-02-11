@@ -29,6 +29,12 @@ const auth = (state = initialState, action ) => {
         token: null,
         isAuthenticated: false,
       }
+    case 'REFRESH_TOKEN_SUCCESS': 
+      return {
+        ...state,
+        token: action.payload,
+        isAuthenticated: true
+      }
     default: return state;
   }
 }

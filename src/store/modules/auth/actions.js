@@ -22,3 +22,8 @@ export function logout() {
     type: 'LOGOUT'
   }
 }
+
+export const refreshToken = (payload) => ({
+  type: 'REFRESH_TOKEN_SUCCESS',
+  payload
+})

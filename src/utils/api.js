@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { store } from "store";
+import { refreshToken, logout } from "store/modules/auth/actions";
 
 const jwt = JSON.parse(localStorage.getItem('jwt'));
 
@@ -20,7 +22,7 @@ api.interceptors.response.use((response) => {
   if(error.response.status === 501 && error.response.data.error.message === 'Token has expired and can no longer be refreshed' ) {
     console.log('jwt di hapus dan logout kehalaman login');
     console.log(error.response);
-    localStorage.removeItem('jwt');
+    store.dispatch(logout());
 
     return new Promise((resolve, reject) => {
       // history nya belom bisa ngepush ke halaman cuma linknya doang terupdate
@@ -34,7 +36,7 @@ api.interceptors.response.use((response) => {
   } else if ( error.response.status === 500 && error.response.data.error.message === 'The token has been blacklisted' ) {
     console.log('jwt di hapus dan logout kehalaman login');
     console.log(error.response);
-    localStorage.removeItem('jwt');
+    store.dispatch(logout());
 
     return new Promise((resolve, reject) => {
       // history nya belom bisa ngepush ke halaman cuma linknya doang terupdate
@@ -56,8 +58,7 @@ api.interceptors.response.use((response) => {
       .then((res) => {
         console.log(res)
         const config = error.config;      
-        localStorage.removeItem('jwt');
-        localStorage.setItem('jwt', JSON.stringify(res.data.token));
+        store.dispatch(refreshToken(res.data.token));
         config.headers['Authorization'] = `Bearer ${res.data.token}`; 
 
         return new Promise((resolve, reject) => {
@@ -74,7 +75,7 @@ api.interceptors.response.use((response) => {
   } else if ( error.response.status === 401 && error.response.data.error.message === 'The token has been blacklisted' ) {
     console.log('jwt di hapus dan logout kehalaman login');
     console.log(error.response);
-    localStorage.removeItem('jwt');
+    store.dispatch(logout());
 
     return new Promise((resolve, reject) => {
       // history nya belom bisa ngepush ke halaman cuma linknya doang terupdate
