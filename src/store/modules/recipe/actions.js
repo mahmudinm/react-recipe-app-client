@@ -8,10 +8,10 @@ export const getRecipeSuccess = (payload) => ({
   payload
 })
 
-export const getMoreRecipeRequest = (payload, setIsFetching) => ({
+export const getMoreRecipeRequest = (payload, setHasMore) => ({
   type: '@homeRecipe/GET_MORE_RECIPE_REQUEST',
   payload,
-  setIsFetching
+  setHasMore
 })
 
 export const getMoreRecipeSuccess = (payload) => ({

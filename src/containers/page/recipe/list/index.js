@@ -7,47 +7,25 @@ import {
 import {
   Card,
   CardBody,
-  Col
+  Col,
+  Media
 } from "reactstrap";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const RecipeListPage = () => {
 
   const dispatch = useDispatch();
   const recipes = useSelector(state => state.homeRecipe.recipes);
-  const current_page = useSelector(state => state.homeRecipe.current_page);
-  const last_page = useSelector(state => state.homeRecipe.last_page);
-  const [isFetching, setIsFetching] = useState(false);
+  const next_page_url = useSelector(state => state.homeRecipe.next_page_url);
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     document.title = "Resep Makanan"
     dispatch(getRecipeRequest());
-    document.addEventListener('scroll', (e) => {
-      if(window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isFetching) return;
-      if(!hasMore) { console.log('hasMore false working ?')}
-      if(hasMore) { console.log('hasMore true working ?')}
-      setIsFetching(true);
-    });
-    // return () => window.removeEventListener('scroll', handleScroll);
-  }, [dispatch, handleScroll])
+  }, [dispatch])
 
-  useEffect(() => {
-    if(!isFetching) return;
-    fetchMore();
-  }, [hasMore, isFetching, current_page, last_page]);
-
-  const handleScroll = () => {
-    if(window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isFetching) return;
-    setIsFetching(true);
-  }
-
-  const fetchMore = () => {
-    if(current_page === last_page) {
-      setHasMore(false)
-      setIsFetching(false);
-    } else {
-      dispatch(getMoreRecipeRequest(current_page + 1, setIsFetching))
-    }
+  const fecthMoreData = () => {
+    dispatch(getMoreRecipeRequest(next_page_url, setHasMore));
   }
 
   return (
@@ -55,25 +33,36 @@ const RecipeListPage = () => {
       <Col lg="12" md="12">
         <Card className="shadow border-0">
           <CardBody className="px-lg-5 py-lg-5">
+          
             <input type="text" name="query"/>
 
-            <p>List data recipe</p>
-            {recipes.map((item, key) => 
-              <div 
-                key={key}
-                style={{ width: '100%', padding: '100px', borderBottom: '1px solid #b9b9b9' }}
-              >
-                {item.name}
-              </div>
-            )}
-            {isFetching && 'Loading...'}
-            {!hasMore && (
-              <div 
-                style={{ width: '100%', padding: '100px', borderBottom: '1px solid #b9b9b9' }}
-              >
-                Last Page
-              </div>
-            )}
+            <InfiniteScroll
+              dataLength={recipes.length}
+              next={fecthMoreData}
+              hasMore={hasMore}
+              loader={<h4>Loading...</h4>}
+              endMessage={<h4>Yay! You have seen it all</h4>}
+            >
+              {recipes.map((recipe, key) => 
+                <Card key={key} className="mb-3">
+                  <CardBody>
+                    <Media>
+                      <Media left>
+                        <Media object style={{ width: '200px' }} src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image} />
+                      </Media>
+                      <Media body className="ml-4" >
+                        <Media>
+                          <h2 className="media-heading">{recipe.name}</h2>
+                        </Media>
+                        <b>Category : {recipe.category.name}</b>
+                        <p>{recipe.step}</p>
+                      </Media>
+                    </Media>
+                  </CardBody>
+                </Card>
+              )}
+            </InfiniteScroll>
+
           </CardBody>
         </Card>
       </Col>

@@ -1,6 +1,7 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 
 import api from "utils/api";
+import axios from 'axios';
 
 import { 
   getRecipeSuccess,
@@ -20,13 +21,17 @@ export function* getRecipe({
 
 export function* getMoreRecipe({ 
   payload,
-  setIsFetching
+  setHasMore
 }) {
   try {
-    const response = yield call(api.get, `/?page=${payload}`);
-    console.log(response);
+    const response = yield call(axios.get, payload);
+
+    if(response.data.next_page_url === null) {
+      setHasMore(false)
+    }
+    // / }
     yield put(getMoreRecipeSuccess(response.data));
-    setIsFetching(false);
+
   } catch (err) {
   } finally {
   }

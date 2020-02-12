@@ -1,8 +1,7 @@
 const initialState = {
   recipes: [],
   recipe: {},
-  current_page: 1,
-  last_page: 2,
+  next_page_url: ''
 }
 
 const recipe = (state = initialState, action ) => {
@@ -11,14 +10,13 @@ const recipe = (state = initialState, action ) => {
       return {
         ...state,
         recipes: action.payload.data,
-        current_page: action.payload.current_page,
-        last_page: action.payload.last_page
+        next_page_url: action.payload.next_page_url,
       }
     case '@homeRecipe/GET_MORE_RECIPE_SUCCESS': 
       return {
         ...state,
         recipes: state.recipes.concat(action.payload.data),
-        current_page: action.payload.current_page
+        next_page_url: action.payload.next_page_url
       }
     default: return state;
   }
