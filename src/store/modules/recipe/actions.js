@@ -1,66 +1,31 @@
-export const getRecipeRequest = () => ({
-  type: 'GET_RECIPE_REQUEST'
+export const getRecipeRequest = (payload) => ({
+  type: '@homeRecipe/GET_RECIPE_REQUEST',
+  payload,
 })
 
 export const getRecipeSuccess = (payload) => ({
-  type: 'GET_RECIPE_SUCCESS',
+  type: '@homeRecipe/GET_RECIPE_SUCCESS',
   payload
 })
 
-export const createRecipeRequest = () => ({
-  type: 'CREATE_RECIPE_REQUEST',
+export const getMoreRecipeRequest = (payload, setIsFetching) => ({
+  type: '@homeRecipe/GET_MORE_RECIPE_REQUEST',
+  payload,
+  setIsFetching
 })
 
-export const createRecipeSuccess = (payload) => ({
-  type: 'CREATE_RECIPE_SUCCESS',
+export const getMoreRecipeSuccess = (payload) => ({
+  type: '@homeRecipe/GET_MORE_RECIPE_SUCCESS',
   payload
 })
 
-export const storeRecipeRequest = (payload, meta, toggle) => ({
-  type: 'STORE_RECIPE_REQUEST',
+export const showRecipeRequest = (payload, meta) => ({
+  type: '@homeRecipe/LOGIN_REQUEST',
   payload,
-  meta,
-  toggle
+  meta
 })
 
-export const storeRecipeSuccess = (payload) => ({
-  type: 'STORE_RECIPE_SUCCESS',
-  payload,
+export const showRecipeSuccess = () => ({
+  type: '@homeRecipe/LOGIN_REQUEST'
 })
-
-export const editRecipeRequest = (payload) => ({
-  type: 'EDIT_RECIPE_REQUEST',
-  payload // ini id
-})
-
-export const editRecipeSuccess = (payload) => ({
-  type: 'EDIT_RECIPE_SUCCESS',
-  payload
-})
-
-export const updateRecipeRequest = (payload, id, meta, toggle) => ({
-  type: 'UPDATE_RECIPE_REQUEST',
-  payload,
-  id,
-  meta,
-  toggle
-})
-
-export const updateRecipeSuccess = (payload) => ({
-  type: 'UPDATE_RECIPE_SUCCESS',
-  payload,
-})
-
-export const deleteRecipeRequest = (payload) => ({
-  type: 'DELETE_RECIPE_REQUEST',
-  payload // ini id 
-})
-
-export const deleteRecipeSuccess = (payload) => ({
-  type: 'DELETE_RECIPE_SUCCESS',
-  payload // ini id 
-})
-
-
-
 

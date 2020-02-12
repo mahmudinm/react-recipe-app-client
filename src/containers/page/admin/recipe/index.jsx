@@ -13,7 +13,7 @@ import {
   createRecipeRequest,
   editRecipeRequest,
   deleteRecipeRequest,
-} from "store/modules/recipe/actions";
+} from "store/modules/admin/recipe/actions";
 import Header from "components/Headers/Header.jsx";
 import RecipeTable from './RecipeTable.jsx';
 import RecipeFormPage from './Form';

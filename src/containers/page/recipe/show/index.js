@@ -19,7 +19,7 @@ const LoginPage = () => {
   return (
     <React.Fragment>
       <Col lg="5" md="7">
-        <Card className="shadow border-0">
+        <Card className="bg-secondary shadow border-0">
           <CardBody className="px-lg-5 py-lg-5">
             <div className="text-center text-muted mb-4">
               <h2>Halaman Login</h2>

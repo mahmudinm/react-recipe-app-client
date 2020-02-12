@@ -8,7 +8,7 @@ import RoleForm from './RoleForm.jsx';
 import {
   storeRoleRequest,
   updateRoleRequest
-} from "store/modules/role/actions";
+} from "store/modules/admin/role/actions";
 import { useDispatch } from 'react-redux';
 
 const RoleFormPage = ({ modal, toggle, modalTitle }) => {

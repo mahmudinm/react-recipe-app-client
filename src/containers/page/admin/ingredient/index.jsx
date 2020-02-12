@@ -13,7 +13,7 @@ import {
   createIngredientRequest,
   editIngredientRequest,
   deleteIngredientRequest,
-} from "store/modules/ingredient/actions";
+} from "store/modules/admin/ingredient/actions";
 import Header from "components/Headers/Header.jsx";
 import IngredientTable from './IngredientTable.jsx';
 import IngredientFormPage from './Form';

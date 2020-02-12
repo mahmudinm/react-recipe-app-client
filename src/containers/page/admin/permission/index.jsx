@@ -13,7 +13,7 @@ import {
   createPermissionRequest,
   editPermissionRequest,
   deletePermissionRequest,
-} from "store/modules/permission/actions";
+} from "store/modules/admin/permission/actions";
 import Header from "components/Headers/Header.jsx";
 import PermissionTable from './PermissionTable.jsx';
 import PermissionFormPage from './Form';

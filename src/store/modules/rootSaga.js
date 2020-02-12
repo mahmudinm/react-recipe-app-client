@@ -1,16 +1,18 @@
 import { all } from 'redux-saga/effects';
 
+import homeRecipe from './recipe/sagas';
 import auth from './auth/sagas';
-import recipe from './recipe/sagas';
-import category from './category/sagas';
-import ingredient from './ingredient/sagas';
-import user from './user/sagas';
-import permission from './permission/sagas';
-import role from './role/sagas';
+import recipe from './admin/recipe/sagas';
+import category from './admin/category/sagas';
+import ingredient from './admin/ingredient/sagas';
+import user from './admin/user/sagas';
+import permission from './admin/permission/sagas';
+import role from './admin/role/sagas';
 
 export default function* rootSaga() {
   return yield all([
-    auth, 
+    homeRecipe,
+    auth,
     recipe,
     category,
     ingredient,

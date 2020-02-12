@@ -13,7 +13,7 @@ import {
   createCategoryRequest,
   editCategoryRequest,
   deleteCategoryRequest,
-} from "store/modules/category/actions";
+} from "store/modules/admin/category/actions";
 import Header from "components/Headers/Header.jsx";
 import CategoryTable from './CategoryTable.jsx';
 import CategoryFormPage from './Form';

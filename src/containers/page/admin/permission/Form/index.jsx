@@ -8,7 +8,7 @@ import PermissionForm from './PermissionForm.jsx';
 import {
   storePermissionRequest,
   updatePermissionRequest
-} from "store/modules/permission/actions";
+} from "store/modules/admin/permission/actions";
 import { useDispatch } from 'react-redux';
 
 const PermissionFormPage = ({ modal, toggle, modalTitle }) => {

@@ -8,7 +8,7 @@ import IngredientForm from './IngredientForm.jsx';
 import {
   storeIngredientRequest,
   updateIngredientRequest
-} from "store/modules/ingredient/actions";
+} from "store/modules/admin/ingredient/actions";
 import { useDispatch } from 'react-redux';
 
 const IngredientFormPage = ({ modal, toggle, modalTitle }) => {

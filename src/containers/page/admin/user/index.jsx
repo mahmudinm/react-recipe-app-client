@@ -13,7 +13,7 @@ import {
   createUserRequest,
   editUserRequest,
   deleteUserRequest,
-} from "store/modules/user/actions";
+} from "store/modules/admin/user/actions";
 import Header from "components/Headers/Header.jsx";
 import UserTable from './UserTable.jsx';
 import UserFormPage from './Form';

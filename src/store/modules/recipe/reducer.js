@@ -1,56 +1,24 @@
 const initialState = {
   recipes: [],
   recipe: {},
-  categories: [],
-  ingredients: []
+  current_page: 1,
+  last_page: 2,
 }
 
 const recipe = (state = initialState, action ) => {
   switch(action.type) {
-    case 'GET_RECIPE_SUCCESS': 
+    case '@homeRecipe/GET_RECIPE_SUCCESS': 
       return {
         ...state,
-        recipes: action.payload,
+        recipes: action.payload.data,
+        current_page: action.payload.current_page,
+        last_page: action.payload.last_page
       }
-    case 'CREATE_RECIPE_REQUEST':
+    case '@homeRecipe/GET_MORE_RECIPE_SUCCESS': 
       return {
         ...state,
-        recipe: {}
-      }
-    case 'CREATE_RECIPE_SUCCESS':
-      return {
-        ...state,
-        categories: action.payload.categories,
-        ingredients: action.payload.ingredients
-      }
-    case 'STORE_RECIPE_SUCCESS':
-      return {
-        ...state,
-        recipes: [...state.recipes, action.payload.data]
-      }
-    case 'EDIT_RECIPE_REQUEST':
-      return {
-        ...state,
-        recipe: {}
-      }
-    case 'EDIT_RECIPE_SUCCESS':
-      return {
-        ...state,
-        recipe: action.payload.recipe,
-        categories: action.payload.categories,
-        ingredients: action.payload.ingredients
-      }
-    case 'UPDATE_RECIPE_SUCCESS':
-      const { data } = action.payload
-      return {
-        ...state,
-        recipe: [],
-        recipes: state.recipes.map(item => item.id === data.id ? data : item )
-      }
-    case 'DELETE_RECIPE_SUCCESS':
-      return {
-        ...state,
-        recipes: state.recipes.filter(item => item.id !== parseInt(action.payload))
+        recipes: state.recipes.concat(action.payload.data),
+        current_page: action.payload.current_page
       }
     default: return state;
   }

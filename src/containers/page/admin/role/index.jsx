@@ -13,7 +13,7 @@ import {
   createRoleRequest,
   editRoleRequest,
   deleteRoleRequest,
-} from "store/modules/role/actions";
+} from "store/modules/admin/role/actions";
 import Header from "components/Headers/Header.jsx";
 import RoleTable from './RoleTable.jsx';
 import RoleFormPage from './Form';

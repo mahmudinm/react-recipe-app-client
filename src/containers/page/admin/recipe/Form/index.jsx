@@ -8,7 +8,7 @@ import RecipeForm from './RecipeForm.jsx';
 import {
   storeRecipeRequest,
   updateRecipeRequest
-} from "store/modules/recipe/actions";
+} from "store/modules/admin/recipe/actions";
 import { useDispatch } from 'react-redux';
 
 const RecipeFormPage = ({ modal, toggle, modalTitle }) => {

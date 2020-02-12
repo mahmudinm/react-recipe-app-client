@@ -8,7 +8,7 @@ import CategoryForm from './CategoryForm.jsx';
 import {
   storeCategoryRequest,
   updateCategoryRequest
-} from "store/modules/category/actions";
+} from "store/modules/admin/category/actions";
 import { useDispatch } from 'react-redux';
 
 const CategoryFormPage = ({ modal, toggle, modalTitle }) => {
