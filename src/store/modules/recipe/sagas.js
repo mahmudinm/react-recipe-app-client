@@ -34,11 +34,12 @@ export function* getRecipe({
  
     if(response.data.next_page_url !== null) {
       setHasMore(true)
+    } else if (response.data.next_page_url == null) {
+      setHasMore(false)
     }
 
     yield put(getRecipeSuccess(response.data));
   } catch (err) {
-  } finally {
   }
 }
 
@@ -58,7 +59,7 @@ export function* getMoreRecipe({
     } else { 
       map_category = '';
     }
-    
+
     const response = yield call(
       axios.get, 
       `${next_page_url}&search=${search}${map_category}`
@@ -71,7 +72,6 @@ export function* getMoreRecipe({
     yield put(getMoreRecipeSuccess(response.data));
 
   } catch (err) {
-  } finally {
   }
 }
 
