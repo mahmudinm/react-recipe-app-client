@@ -25,6 +25,7 @@ const RecipeListPage = () => {
   const [search, setSearch] = useState('');
   const [category_id, setCategory_id] = useState([]);
   const [hasMore, setHasMore] = useState(true);
+  let timer = null;
 
   useEffect(() => {
     document.title = "Resep Makanan"
@@ -36,8 +37,13 @@ const RecipeListPage = () => {
   }
 
   const handleSearch = (e) => {
-    setSearch(e.target.value)
+    let name = e.target.value;
+    if(timer) clearTimeout(timer);
+    timer = setTimeout(() => {
+      setSearch(name);
+    }, 250)
   }
+
 
   const handleCategory = (e) => {
     if(e.target.checked) {
