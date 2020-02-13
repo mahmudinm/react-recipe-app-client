@@ -1,6 +1,7 @@
-export const getRecipeRequest = (payload) => ({
+export const getRecipeRequest = (payload, setHasMore) => ({
   type: '@homeRecipe/GET_RECIPE_REQUEST',
   payload,
+  setHasMore
 })
 
 export const getRecipeSuccess = (payload) => ({
@@ -16,6 +17,17 @@ export const getMoreRecipeRequest = (payload, setHasMore) => ({
 
 export const getMoreRecipeSuccess = (payload) => ({
   type: '@homeRecipe/GET_MORE_RECIPE_SUCCESS',
+  payload
+})
+
+export const searchRecipeRequest = (payload, setHasMore) => ({
+  type: '@homeRecipe/SEARCH_RECIPE_REQUEST',
+  payload,
+  setHasMore
+})
+
+export const searchRecipeSuccess = (payload) => ({
+  type: '@homeRecipe/SEARCH_RECIPE_SUCCESS',
   payload
 })
 
