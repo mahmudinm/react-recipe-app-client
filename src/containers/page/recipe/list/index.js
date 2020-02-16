@@ -49,14 +49,16 @@ const RecipeListPage = () => {
 
   const handleCategory = (e) => {
     if(e.target.checked) {
-      setCategoryFilter([...categoryFilter, { id: e.target.value, name: e.currentTarget.getAttribute('data-name')}])
+      setCategoryFilter([...categoryFilter, { id: e.target.value, name: e.currentTarget.getAttribute('data-name')}]);
     } else {
       setCategoryFilter(categoryFilter.filter(item => item.id !== e.target.value));
     }
   }
 
-  const closeCategory = (index) => {
-    setCategoryFilter(categoryFilter.filter(item => item.id !== index ));
+  const closeCategory = (id, name) => {
+    setCategoryFilter(categoryFilter.filter(item => item.id !== id ));
+    const categoryId = `${name}-${id}`;
+    document.getElementById(categoryId).checked = false;
   }
 
   return (
@@ -88,8 +90,8 @@ const RecipeListPage = () => {
                       value={category.id}
                       data-name={category.name}
                       onClick={handleCategory}
-                      id={`${category.name}-${key}`}
-                      /> : <label htmlFor={`${category.name}-${key}`}>{category.name}</label>
+                      id={`${category.name}-${category.id}`}
+                    /> : <label htmlFor={`${category.name}-${category.id}`}>{category.name}</label>
                   </button>
                 )}
               </div>
@@ -99,7 +101,7 @@ const RecipeListPage = () => {
               {categoryFilter.map((item, key) => 
                 <span className="badge badge-primary" style={{ lineHeight: '1.8', paddingLeft: '10px', paddingRight: '10px', marginRight: '10px' }} key={key}>
                   {item.name}
-                  <button type="button" className="close" onClick={(e) => closeCategory(item.id)} >
+                  <button type="button" className="close" onClick={(e) => closeCategory(item.id, item.name)} >
                     <span>&times;</span>
                   </button>
                 </span>

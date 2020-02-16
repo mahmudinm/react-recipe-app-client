@@ -50,7 +50,7 @@ export function* getMoreRecipe({
 
     if(categoryFilter.length > 0) {
       categoryFilter.map((item) => {
-        map_category += `&category_id[]=${item}`;
+        map_category += `&category_id[]=${item.id}`;
       })
     } else { 
       map_category = '';
@@ -58,7 +58,7 @@ export function* getMoreRecipe({
 
     const response = yield call(
       axios.get, 
-      `${next_page_url}&search=${search}${map_category}`
+      `${next_page_url}&name=${search}${map_category}`
     );
 
     if(response.data.recipes.next_page_url === null) {
