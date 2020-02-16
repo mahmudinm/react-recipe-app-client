@@ -13,7 +13,7 @@ import {
   FormGroup,
   InputGroup,
   InputGroupAddon,
-  InputGroupText  
+  InputGroupText
 } from "reactstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -21,19 +21,22 @@ const RecipeListPage = () => {
 
   const dispatch = useDispatch();
   const recipes = useSelector(state => state.homeRecipe.recipes);
+  const categories = useSelector(state => state.homeRecipe.categories);
   const next_page_url = useSelector(state => state.homeRecipe.next_page_url);
   const [search, setSearch] = useState('');
-  const [category_id, setCategory_id] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
+  const [categoryFilter, setCategoryFilter] = useState([]);
+  const [hasMore, setHasMore] = useState(true);  
   let timer = null;
+
 
   useEffect(() => {
     document.title = "Resep Makanan"
-    dispatch(getRecipeRequest({ search, category_id }, setHasMore));
-  }, [dispatch, search, category_id])
+    dispatch(getRecipeRequest({ search, categoryFilter }, setHasMore));
+  }, [dispatch, search, categoryFilter])
+
 
   const fecthMoreData = () => {
-    dispatch(getMoreRecipeRequest({ next_page_url, search, category_id }, setHasMore));
+    dispatch(getMoreRecipeRequest({ next_page_url, search, categoryFilter }, setHasMore));
   }
 
   const handleSearch = (e) => {
@@ -44,13 +47,16 @@ const RecipeListPage = () => {
     }, 250)
   }
 
-
   const handleCategory = (e) => {
     if(e.target.checked) {
-      setCategory_id([...category_id, e.target.value])
+      setCategoryFilter([...categoryFilter, { id: e.target.value, name: e.currentTarget.getAttribute('data-name')}])
     } else {
-      setCategory_id(category_id.filter(item => item !== e.target.value));
+      setCategoryFilter(categoryFilter.filter(item => item.id !== e.target.value));
     }
+  }
+
+  const closeCategory = (index) => {
+    setCategoryFilter(categoryFilter.filter(item => item.id !== index ));
   }
 
   return (
@@ -67,16 +73,41 @@ const RecipeListPage = () => {
                 </InputGroupAddon>
                 <Input placeholder="Search..." type="email" style={{ height: '55px' }} onChange={handleSearch}/>
               </InputGroup>
-            </FormGroup>
+            </FormGroup>        
 
-            Soup : <input type="checkbox" onClick={handleCategory} name="category_id" value="16"/>
-            Bubur : <input type="checkbox" onClick={handleCategory} name="category_id" value="18"/>
+            <div className="dropdown">
+              <button className="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Category
+              </button>
 
-            {category_id.map((item, key) => 
-              <p key={key} >{item}</p>
-            )}
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                {categories.map((category, key) => 
+                  <button className="dropdown-item" key={key}>
+                    <input 
+                      type="checkbox"
+                      value={category.id}
+                      data-name={category.name}
+                      onClick={handleCategory}
+                      id={`${category.name}-${key}`}
+                      /> : <label htmlFor={`${category.name}-${key}`}>{category.name}</label>
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div className="my-3">
+              {categoryFilter.map((item, key) => 
+                <span className="badge badge-primary" style={{ lineHeight: '1.8', paddingLeft: '10px', paddingRight: '10px', marginRight: '10px' }} key={key}>
+                  {item.name}
+                  <button type="button" className="close" onClick={(e) => closeCategory(item.id)} >
+                    <span>&times;</span>
+                  </button>
+                </span>
+              )}
+            </div>
 
             <InfiniteScroll
+              className="mt-3"
               dataLength={recipes.length}
               next={fecthMoreData}
               hasMore={hasMore}

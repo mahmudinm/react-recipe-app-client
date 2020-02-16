@@ -996,14 +996,14 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.4":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.3.4", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.3", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.4":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.8.3.tgz#0811944f73a6c926bb2ad35e918dcc1bfab279f1"
   integrity sha512-fVHx1rzEmwB130VTkLnxR+HmxcTjGzH12LYQcFFoBwakMd3aOMD4OsRN7tGG/UOYE2ektgFrS8uACAoRk1CY0w==
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.4.2", "@babel/runtime@^7.4.4":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0", "@babel/runtime@^7.4.2", "@babel/runtime@^7.4.4":
   version "7.8.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.8.4.tgz#d79f5a2040f7caa24d53e563aad49cbc05581308"
   integrity sha512-neAp3zt80trRVBI1x0azq6c57aNBqYZH8KhMm3TaB7wEI5Q4A2SHfBHE8w9gOhI/lrqxtEbXZgQIrHP+wvSGwQ==
@@ -2500,6 +2500,11 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
+bootstrap@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.4.1.tgz#8582960eea0c5cd2bede84d8b0baf3789c3e8b01"
+  integrity sha512-tbx5cHubwE6e2ZG7nqM3g/FZ5PQEDMWmMGNrCUBVRPHXTJaH7CBDdsLeu3eCh3B1tzAxTnAbtmrzvWEvT2NNEA==
+
 brace-expansion@^1.1.7:
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.11.tgz#3c7fcbf529d87226f3d2f52b966ff5271eb441dd"
@@ -3283,6 +3288,14 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+create-react-context@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.3.0.tgz#546dede9dc422def0d3fc2fe03afe0bc0f4f7d8c"
+  integrity sha512-dNldIoSuNSvlTJ7slIKC/ZFGKexBMBrrcc+TTe1NdmROnaASuLPvqpwj9v4XS4uXZ8+YPu0sNmShX2rXI5LNsw==
+  dependencies:
+    gud "^1.0.0"
+    warning "^4.0.3"
+
 cross-spawn@6.0.5, cross-spawn@^6.0.0, cross-spawn@^6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
@@ -3616,7 +3629,7 @@ decode-uri-component@^0.2.0:
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
   integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
 
-deep-equal@^1.0.1:
+deep-equal@^1.0.1, deep-equal@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.1.1.tgz#b5c98c942ceffaf7cb051e24e1434a25a2e6076a"
   integrity sha512-yd9c5AdiqVcR+JjcwUQb9DkhJc8ngNr0MahEBGvDiJw8puWab2yZlh+nkasOnZP+EGTAP6rRp2JzJhJZzvNF8g==
@@ -6295,6 +6308,11 @@ jest@24.9.0:
     import-local "^2.0.0"
     jest-cli "^24.9.0"
 
+jquery@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
+  integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
+
 js-base64@^2.1.8:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.5.1.tgz#1efa39ef2c5f7980bb1784ade4a8af2de3291121"
@@ -6687,16 +6705,6 @@ lodash.clonedeep@^4.3.2:
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
   integrity sha1-4j8/nE+Pvd6HJSnBBxhXoIblzO8=
 
-lodash.isfunction@^3.0.9:
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.9.tgz#06de25df4db327ac931981d1bdb067e5af68d051"
-  integrity sha512-AirXNj15uRIMMPihnkInB4i3NHeb4iBtNg9WRWuK2o31S+ePwwNmDPaTL3o7dTJ+VXNZim7rFs4rxN4YU1oUJw==
-
-lodash.isobject@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
-  integrity sha1-PI+41bW/S/kK4G4U8qUwpO2TXh0=
-
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
@@ -6726,11 +6734,6 @@ lodash.templatesettings@^4.0.0:
   integrity sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==
   dependencies:
     lodash._reinterpolate "^3.0.0"
-
-lodash.tonumber@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/lodash.tonumber/-/lodash.tonumber-4.0.3.tgz#0b96b31b35672793eb7f5a63ee791f1b9e9025d9"
-  integrity sha1-C5azGzVnJ5Prf1pj7nkfG56QJdk=
 
 lodash.uniq@^4.5.0:
   version "4.5.0"
@@ -7990,10 +7993,10 @@ pnp-webpack-plugin@1.5.0:
   dependencies:
     ts-pnp "^1.1.2"
 
-popper.js@^1.14.1:
-  version "1.16.0"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.0.tgz#2e1816bcbbaa518ea6c2e15a466f4cb9c6e2fbb3"
-  integrity sha512-+G+EkOPoE5S/zChTpmBSSDYmhXJ5PsW8eMhH8cP/CQHMFPBG/kC9Y5IIw6qNYgdJ+/COf0ddY2li28iHaZRSjw==
+popper.js@^1.14.4:
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
+  integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
 
 portfinder@^1.0.25:
   version "1.0.25"
@@ -9002,13 +9005,18 @@ react-loader-spinner@^3.1.5:
     babel-runtime "^6.26.0"
     prop-types "^15.6.2"
 
-react-popper@^0.10.4:
-  version "0.10.4"
-  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.10.4.tgz#af2a415ea22291edd504678d7afda8a6ee3295aa"
-  integrity sha1-rypBXqIike3VBGeNev2opu4ylao=
+react-popper@^1.3.6:
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-1.3.7.tgz#f6a3471362ef1f0d10a4963673789de1baca2324"
+  integrity sha512-nmqYTx7QVjCm3WUZLeuOomna138R1luC4EqkW3hxJUrAe+3eNz3oFCLYdnPwILfn0mX1Ew2c3wctrjlUMYYUww==
   dependencies:
-    popper.js "^1.14.1"
+    "@babel/runtime" "^7.1.2"
+    create-react-context "^0.3.0"
+    deep-equal "^1.1.1"
+    popper.js "^1.14.4"
     prop-types "^15.6.1"
+    typed-styles "^0.0.7"
+    warning "^4.0.2"
 
 react-redux@^7.1.3:
   version "7.1.3"
@@ -9169,19 +9177,16 @@ react@16.12.0:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
 
-reactstrap@7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/reactstrap/-/reactstrap-7.1.0.tgz#fd7125901737a3001c8564c0f8b40e319eec23b2"
-  integrity sha512-wtc4RkgnGn1TsZ0AxOZ2OqT+b8YmCWZj/tErPujWLepxzlEEhveZGC+uDerdaHVSAzJUP2DTk605iper7hutQQ==
+reactstrap@8.4.1:
+  version "8.4.1"
+  resolved "https://registry.yarnpkg.com/reactstrap/-/reactstrap-8.4.1.tgz#c7f63b9057f58b52833061711ebe235b9ec4e3e5"
+  integrity sha512-oAjp9PYYUGKl7SLXwrQ1oRIrYw0MqfO2mUqYgGapFKHG2uwjEtLip5rYxtMujkGx3COjH5FX1WtcfNU4oqpH0Q==
   dependencies:
     "@babel/runtime" "^7.2.0"
     classnames "^2.2.3"
-    lodash.isfunction "^3.0.9"
-    lodash.isobject "^3.0.2"
-    lodash.tonumber "^4.0.3"
     prop-types "^15.5.8"
     react-lifecycles-compat "^3.0.4"
-    react-popper "^0.10.4"
+    react-popper "^1.3.6"
     react-transition-group "^2.3.1"
 
 read-pkg-up@^1.0.1:
@@ -10740,6 +10745,11 @@ type@^2.0.0:
   resolved "https://registry.yarnpkg.com/type/-/type-2.0.0.tgz#5f16ff6ef2eb44f260494dae271033b29c09a9c3"
   integrity sha512-KBt58xCHry4Cejnc2ISQAF7QY+ORngsWfxezO68+12hKV6lQY8P/psIkcbjeHWn7MqcgciWJyCCevFMJdIXpow==
 
+typed-styles@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/typed-styles/-/typed-styles-0.0.7.tgz#93392a008794c4595119ff62dde6809dbc40a3d9"
+  integrity sha512-pzP0PWoZUhsECYjABgCGQlRGL1n7tOHsgwYv3oIiEpJwGhFTuty/YNeduxQYzXXa3Ge5BdT6sHYIQYpl4uJ+5Q==
+
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
@@ -11025,6 +11035,13 @@ walker@^1.0.7, walker@~1.0.5:
   integrity sha1-L3+bj9ENZ3JisYqITijRlhjgKPs=
   dependencies:
     makeerror "1.0.x"
+
+warning@^4.0.2, warning@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
+  integrity sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==
+  dependencies:
+    loose-envify "^1.0.0"
 
 watchpack@^1.6.0:
   version "1.6.0"

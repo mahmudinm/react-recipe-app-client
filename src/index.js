@@ -10,6 +10,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import "assets/vendor/nucleo/css/nucleo.css";
 import "assets/vendor/@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/scss/argon-dashboard-react.scss";
+// Import Bootstrap
+import $ from 'jquery';
+import 'bootstrap/dist/js/bootstrap.min.js';
 // Import spinner
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 

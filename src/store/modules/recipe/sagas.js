@@ -13,28 +13,25 @@ export function* getRecipe({
   setHasMore
 }) {
   try {
-    const { search, category_id } = payload;
-    let check_category_id ;
+    const { search, categoryFilter } = payload;
     let map_category = '';
 
-    if(category_id.length > 0) {
-      category_id.map((item) => {
-        map_category += `&category_id[]=${item}`;
+    if(categoryFilter.length > 0) {
+      categoryFilter.map((item) => {
+        map_category += `&category_id[]=${item.id}`;
       })
     } else { 
       map_category = '';
     }
-
-    console.log(map_category);
 
     const response = yield call(
       api.get, 
       `?name=${search}${map_category}`
     );
  
-    if(response.data.next_page_url !== null) {
+    if(response.data.recipes.next_page_url !== null) {
       setHasMore(true)
-    } else if (response.data.next_page_url == null) {
+    } else if (response.data.recipes.next_page_url == null) {
       setHasMore(false)
     }
 
@@ -48,12 +45,11 @@ export function* getMoreRecipe({
   setHasMore
 }) {
   try {
-    const { next_page_url, search, category_id } = payload;
-    let check_category_id ;
+    const { next_page_url, search, categoryFilter } = payload;
     let map_category = '';
 
-    if(category_id.length > 0) {
-      category_id.map((item) => {
+    if(categoryFilter.length > 0) {
+      categoryFilter.map((item) => {
         map_category += `&category_id[]=${item}`;
       })
     } else { 
@@ -65,7 +61,7 @@ export function* getMoreRecipe({
       `${next_page_url}&search=${search}${map_category}`
     );
 
-    if(response.data.next_page_url === null) {
+    if(response.data.recipes.next_page_url === null) {
       setHasMore(false)
     }
 
