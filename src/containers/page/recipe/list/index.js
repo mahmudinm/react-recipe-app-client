@@ -20,6 +20,7 @@ import {
   InputGroupText
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import ContentLoader from "react-content-loader" 
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const RecipeListPage = () => {
@@ -28,12 +29,12 @@ const RecipeListPage = () => {
   const recipes = useSelector(state => state.homeRecipe.recipes);
   const categories = useSelector(state => state.homeRecipe.categories);
   const next_page_url = useSelector(state => state.homeRecipe.next_page_url);
+  const loading = useSelector(state => state.homeRecipe.loading);
   const [search, setSearch] = useState('');
   const [categoryFilter, setCategoryFilter] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [listGrid, setListGrid] = useState('List');
   let timer = null;
-
 
   useEffect(() => {
     document.title = "Resep Makanan"
@@ -78,6 +79,47 @@ const RecipeListPage = () => {
       document.getElementById('list-button').classList.toggle('active');
     }
   }
+
+  const RecipeListLoader = () => (
+    <React.Fragment>
+      <ContentLoader 
+        speed={1.3}
+        height={200}
+        width={1000}
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="25" y="25" rx="0" ry="0" width="200" height="150" />
+        <rect x="250" y="40" rx="5" ry="5" width="120" height="15" />
+        <rect x="250" y="80" rx="5" ry="5" width="220" height="15" />
+        <rect x="250" y="105" rx="5" ry="5" width="190" height="15" />
+      </ContentLoader>
+      <ContentLoader 
+        speed={1.3}
+        height={200}
+        width={1000}
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="25" y="25" rx="0" ry="0" width="200" height="150" />
+        <rect x="250" y="40" rx="5" ry="5" width="120" height="15" />
+        <rect x="250" y="80" rx="5" ry="5" width="220" height="15" />
+        <rect x="250" y="105" rx="5" ry="5" width="190" height="15" />
+      </ContentLoader>
+      <ContentLoader 
+        speed={1.3}
+        height={200}
+        width={1000}
+        backgroundColor="#f3f3f3"
+        foregroundColor="#ecebeb"
+      >
+        <rect x="25" y="25" rx="0" ry="0" width="200" height="150" />
+        <rect x="250" y="40" rx="5" ry="5" width="120" height="15" />
+        <rect x="250" y="80" rx="5" ry="5" width="220" height="15" />
+        <rect x="250" y="105" rx="5" ry="5" width="190" height="15" />
+      </ContentLoader>    
+    </React.Fragment>
+  )
 
   return (
     <React.Fragment>
@@ -136,11 +178,12 @@ const RecipeListPage = () => {
               dataLength={recipes.length}
               next={fecthMoreData}
               hasMore={hasMore}
-              loader={<h4>Loading...</h4>}
+              loader={<RecipeListLoader />}
               endMessage={<h4>Yay! You have seen it all</h4>}
               style={{ overflow: 'hidden' }}
             >
               <div className="row">
+                {loading && <RecipeListLoader/>} 
                 {recipes.map((recipe, key) =>  {
                   return listGrid === 'List' ?  
                     <Col lg="12" md="12" key={key}>
@@ -148,7 +191,7 @@ const RecipeListPage = () => {
                         <CardBody>
                           <Media>
                             <Media left>
-                              <Media object style={{ width: '200px' }} src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image} />
+                              <Media object style={{ width: '200px', height: '150px', objectFit: 'cover' }} src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image} />
                             </Media>
                             <Media body className="ml-4" >
                               <Media>
@@ -164,7 +207,7 @@ const RecipeListPage = () => {
                       </Card>   
                     </Col> :
                     <Col lg="6" md="6" key={key}>
-                      <Card className="<mt-4></mt-4>">
+                      <Card className="mt-4">
                         <CardImg top src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image} style={{ height: '270px', objectFit: 'cover' }}/>
                         <CardBody>
                           <CardTitle>{recipe.name}</CardTitle>
@@ -173,7 +216,7 @@ const RecipeListPage = () => {
                         </CardBody>
                       </Card>
                     </Col>
-                })}
+                })} 
               </div>
               <div className="clearfix"></div>
             </InfiniteScroll>

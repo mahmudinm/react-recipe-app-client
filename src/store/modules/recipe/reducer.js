@@ -5,17 +5,24 @@ const initialState = {
     ingredients: []
   },
   categories: [],
-  next_page_url: ''
+  next_page_url: '',
+  loading: false
 }
 
 const recipe = (state = initialState, action ) => {
   switch(action.type) {
+    case '@homeRecipe/GET_RECIPE_REQUEST': 
+      return {
+        ...state,
+        loading: true,
+      }
     case '@homeRecipe/GET_RECIPE_SUCCESS': 
       return {
         ...state,
         recipes: action.payload.recipes.data,
         categories: action.payload.categories,
         next_page_url: action.payload.recipes.next_page_url,
+        loading: false,
       }
     case '@homeRecipe/GET_MORE_RECIPE_SUCCESS': 
       return {

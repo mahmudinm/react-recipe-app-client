@@ -16,13 +16,11 @@ import {
 } from "store/modules/recipe/actions";
 import ContentLoader from "react-content-loader" 
 
-
-const RecipeShowPage = ({ match }) => {
+const RecipeShowPage = () => {
 
   let { id } = useParams();
   const dispatch = useDispatch();
   const recipe = useSelector(state => state.homeRecipe.recipe);
-
 
   useEffect(() => {
     dispatch(showRecipeRequest({ id }));
@@ -31,7 +29,7 @@ const RecipeShowPage = ({ match }) => {
     }
   }, [dispatch, id])
 
-  const MyLoader = () => (
+  const RecipeShowLoader = () => (
     <ContentLoader 
       speed={1.3}
       height={820}
@@ -70,7 +68,7 @@ const RecipeShowPage = ({ match }) => {
                   )}
                 </ul>
               </CardBody> 
-            </React.Fragment> : <MyLoader/>
+            </React.Fragment> : <RecipeShowLoader/>
           }
         </Card>
       </Col>
