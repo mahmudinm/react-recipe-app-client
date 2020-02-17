@@ -14,6 +14,7 @@ const recipe = (state = initialState, action ) => {
     case '@homeRecipe/GET_RECIPE_REQUEST': 
       return {
         ...state,
+        recipes: [],
         loading: true,
       }
     case '@homeRecipe/GET_RECIPE_SUCCESS': 

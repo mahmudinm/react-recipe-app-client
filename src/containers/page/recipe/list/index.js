@@ -5,6 +5,7 @@ import {
   getMoreRecipeRequest
 } from "store/modules/recipe/actions";
 import {
+  Row,
   Col,
   Media,
   Input,
@@ -121,6 +122,41 @@ const RecipeListPage = () => {
     </React.Fragment>
   )
 
+  const RecipeGridLoader = () => (
+    <React.Fragment>
+      <Row className="mt-4">
+        <Col lg="6" md="6">      
+          <ContentLoader 
+            speed={1.3}
+            height={400}
+            width={500}
+            backgroundColor="#f3f3f3"
+            foregroundColor="#ecebeb"
+          >
+            <rect x="0" y="0" rx="5" ry="5" width="500" height="270" />
+            <rect x="25" y="305" rx="5" ry="5" width="120" height="15" />
+            <rect x="25" y="345" rx="5" ry="5" width="220" height="15" />
+            <rect x="25" y="370" rx="5" ry="5" width="190" height="15" />
+          </ContentLoader>
+        </Col>
+        <Col lg="6" md="6">
+          <ContentLoader 
+            speed={1.3}
+            height={400}
+            width={500}
+            backgroundColor="#f3f3f3"
+            foregroundColor="#ecebeb"
+          >
+            <rect x="0" y="0" rx="5" ry="5" width="500" height="270" />
+            <rect x="25" y="305" rx="5" ry="5" width="120" height="15" />
+            <rect x="25" y="345" rx="5" ry="5" width="220" height="15" />
+            <rect x="25" y="370" rx="5" ry="5" width="190" height="15" />
+          </ContentLoader>
+        </Col>
+      </Row>
+    </React.Fragment>
+  )
+
   return (
     <React.Fragment>
       <Col lg="12" md="12">
@@ -178,12 +214,13 @@ const RecipeListPage = () => {
               dataLength={recipes.length}
               next={fecthMoreData}
               hasMore={hasMore}
-              loader={<RecipeListLoader />}
+              loader={listGrid === 'List' ? <RecipeListLoader /> : <RecipeGridLoader />}
               endMessage={<h4>Yay! You have seen it all</h4>}
               style={{ overflow: 'hidden' }}
             >
               <div className="row">
-                {loading && <RecipeListLoader/>} 
+                {loading && listGrid === 'List' && <RecipeListLoader/> } 
+                {loading && listGrid === 'Grid' && <RecipeGridLoader/> } 
                 {recipes.map((recipe, key) =>  {
                   return listGrid === 'List' ?  
                     <Col lg="12" md="12" key={key}>
