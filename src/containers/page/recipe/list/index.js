@@ -210,12 +210,12 @@ const RecipeListPage = () => {
             </div>
 
             <InfiniteScroll
-              className="mt-5"
+              className="mt-4"
               dataLength={recipes.length}
               next={fecthMoreData}
               hasMore={hasMore}
               loader={listGrid === 'List' ? <RecipeListLoader /> : <RecipeGridLoader />}
-              endMessage={<h4>Yay! You have seen it all</h4>}
+              endMessage={<h4 className="mt-4 text-center">Yay! You have seen it all</h4>}
               style={{ overflow: 'hidden' }}
             >
               <div className="row">
@@ -247,7 +247,11 @@ const RecipeListPage = () => {
                       <Card className="mt-4">
                         <CardImg top src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image} style={{ height: '270px', objectFit: 'cover' }}/>
                         <CardBody>
-                          <CardTitle>{recipe.name}</CardTitle>
+                          <CardTitle>
+                            <h2>
+                              <Link to={`/recipe/${recipe.id}`}>{recipe.name}</Link>
+                            </h2>
+                          </CardTitle>
                           <CardSubtitle>Category : {recipe.category.name}</CardSubtitle>
                           <CardText>{recipe.step}</CardText>
                         </CardBody>
