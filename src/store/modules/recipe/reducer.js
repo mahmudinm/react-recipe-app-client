@@ -34,6 +34,11 @@ const recipe = (state = initialState, action ) => {
         ...state,
         recipe: action.payload,
       }
+    case '@homeRecipe/SHOW_RECIPE_UNMOUNT': 
+      return {
+        ...state,
+        recipe: {},
+      }
     default: return state;
   }
 }

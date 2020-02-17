@@ -41,3 +41,7 @@ export const showRecipeSuccess = (payload) => ({
   payload
 })
 
+export const showRecipeUnmount = () => ({
+  type: '@homeRecipe/SHOW_RECIPE_UNMOUNT',
+})
+
