@@ -163,8 +163,8 @@ const RecipeListPage = () => {
                       </Card>   
                     </Col> :
                     <Col lg="6" md="6" key={key}>
-                      <Card className="mt-3">
-                        <CardImg top width="100%" src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image}/>
+                      <Card className="mt-4">
+                        <CardImg top width="60%" src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image} style={{ height: '270px', objectFit: 'cover' }}/>
                         <CardBody>
                           <CardTitle>{recipe.name}</CardTitle>
                           <CardSubtitle>Category : {recipe.category.name}</CardSubtitle>
