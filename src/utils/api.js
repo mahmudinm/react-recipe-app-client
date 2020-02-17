@@ -2,14 +2,14 @@ import axios from 'axios'
 import { store } from "store";
 import { refreshToken, logout } from "store/modules/auth/actions";
 
-const jwt = JSON.parse(localStorage.getItem('jwt'));
+// const jwt = JSON.parse(localStorage.getItem('jwt'));
 
 const api = axios.create({
   baseURL: 'http://localhost:8000/api',
   headers: {
     'Content-type': 'application/json',
     'Accept': 'application/json',
-    'Authorization': `Bearer ${jwt}`
+    // 'Authorization': `Bearer ${jwt}`
   }
 })
 
@@ -54,6 +54,7 @@ api.interceptors.response.use((response) => {
         const config = error.config;      
         store.dispatch(refreshToken(res.data.token));
         config.headers['Authorization'] = `Bearer ${res.data.token}`; 
+        api.defaults.headers.Authorization = `Bearer ${res.data.token}`;
 
         return new Promise((resolve, reject) => {
           axios.request(config).then(response => {
