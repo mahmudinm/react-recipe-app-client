@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
   getRecipeRequest,
@@ -18,8 +18,9 @@ import {
   InputGroup,
   InputGroupAddon,
   InputGroupText
-} from "reactstrap";
-import InfiniteScroll from "react-infinite-scroll-component";
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const RecipeListPage = () => {
 
@@ -130,10 +131,8 @@ const RecipeListPage = () => {
               )}
             </div>
 
-            {listGrid}
-
             <InfiniteScroll
-              className="mt-3"
+              className="mt-5"
               dataLength={recipes.length}
               next={fecthMoreData}
               hasMore={hasMore}
@@ -153,7 +152,9 @@ const RecipeListPage = () => {
                             </Media>
                             <Media body className="ml-4" >
                               <Media>
-                                <h2 className="media-heading">{recipe.name}</h2>
+                                <h2 className="media-heading">
+                                  <Link to={`/recipe/${recipe.id}`}>{recipe.name}</Link>
+                                </h2>
                               </Media>
                               <b>Category : {recipe.category.name}</b>
                               <p>{recipe.step}</p>
@@ -163,8 +164,8 @@ const RecipeListPage = () => {
                       </Card>   
                     </Col> :
                     <Col lg="6" md="6" key={key}>
-                      <Card className="mt-4">
-                        <CardImg top width="60%" src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image} style={{ height: '270px', objectFit: 'cover' }}/>
+                      <Card className="<mt-4></mt-4>">
+                        <CardImg top src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image} style={{ height: '270px', objectFit: 'cover' }}/>
                         <CardBody>
                           <CardTitle>{recipe.name}</CardTitle>
                           <CardSubtitle>Category : {recipe.category.name}</CardSubtitle>

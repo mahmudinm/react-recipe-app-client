@@ -31,13 +31,13 @@ export const searchRecipeSuccess = (payload) => ({
   payload
 })
 
-export const showRecipeRequest = (payload, meta) => ({
-  type: '@homeRecipe/LOGIN_REQUEST',
-  payload,
-  meta
+export const showRecipeRequest = (payload) => ({
+  type: '@homeRecipe/SHOW_RECIPE_REQUEST',
+  payload
 })
 
-export const showRecipeSuccess = () => ({
-  type: '@homeRecipe/LOGIN_REQUEST'
+export const showRecipeSuccess = (payload) => ({
+  type: '@homeRecipe/SHOW_RECIPE_SUCCESS',
+  payload
 })
 

@@ -1,32 +1,47 @@
-import React from "react";
-import { useDispatch } from 'react-redux';
-import { loginRequest } from "store/modules/auth/actions";
-import LoginForm from './LoginForm';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Card,
   CardBody,
+  CardImg,
+  CardTitle,
+  CardSubtitle,
+  CardText,
   Col
-} from "reactstrap";
+} from 'reactstrap';
+import { showRecipeRequest } from "store/modules/recipe/actions";
 
-const LoginPage = () => {
+const RecipeShowPage = ({ match }) => {
 
-  const dispatch = useDispatch()
+  let { id } = useParams();
+  const dispatch = useDispatch();
+  const recipe = useSelector(state => state.homeRecipe.recipe);
 
-  const handleLogin = (data, meta) => {
-    dispatch(loginRequest(data, meta))
-  }
+  useEffect(() => {
+    dispatch(showRecipeRequest({ id }));
+    console.log(id);
+  }, [dispatch, id])
 
   return (
     <React.Fragment>
-      <Col lg="5" md="7">
-        <Card className="bg-secondary shadow border-0">
-          <CardBody className="px-lg-5 py-lg-5">
-            <div className="text-center text-muted mb-4">
-              <h2>Halaman Login</h2>
-            </div>
-
-            <LoginForm handleLogin={handleLogin} />
-
+      <Col lg="12" md="12">
+        <Card className="shadow border-0">
+          <CardImg top src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image} style={{ height: '450px', objectFit: 'cover' }}/>
+          <CardBody>
+            <CardTitle>
+              <h1>{recipe.name}</h1>
+            </CardTitle>
+            <CardSubtitle>Category : {recipe.category.name}</CardSubtitle>
+            <br/>
+            <CardText><b>Step / Langkah Membuat :</b></CardText>
+            <CardText className="ml-3">{recipe.step}</CardText>
+            <CardText>Ingredients / Bahan Bahan</CardText>
+            <ul>
+              {recipe.ingredients.map((item, key) => 
+                <li key={key}>{item.name} {item.pivot.quantity}</li>
+              )}
+            </ul>
           </CardBody>
         </Card>
       </Col>
@@ -34,4 +49,4 @@ const LoginPage = () => {
   );
 }
 
-export default LoginPage;
+export default RecipeShowPage;

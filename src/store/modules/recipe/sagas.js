@@ -6,6 +6,7 @@ import axios from 'axios';
 import { 
   getRecipeSuccess,
   getMoreRecipeSuccess,
+  showRecipeSuccess,
 } from './actions';
 
 export function* getRecipe({ 
@@ -17,7 +18,7 @@ export function* getRecipe({
     let map_category = '';
 
     if(categoryFilter.length > 0) {
-      categoryFilter.map((item) => {
+      categoryFilter.each((item) => {
         map_category += `&category_id[]=${item.id}`;
       })
     } else { 
@@ -49,7 +50,7 @@ export function* getMoreRecipe({
     let map_category = '';
 
     if(categoryFilter.length > 0) {
-      categoryFilter.map((item) => {
+      categoryFilter.each((item) => {
         map_category += `&category_id[]=${item.id}`;
       })
     } else { 
@@ -71,7 +72,25 @@ export function* getMoreRecipe({
   }
 }
 
+export function* showRecipe({
+  payload
+}) {
+  try {
+    const { id } = payload;
+
+    const response = yield call(
+      api.get, 
+      `recipe/${id}`
+    );
+
+    yield put(showRecipeSuccess(response.data));
+
+  } catch( err) {
+  }
+}
+
 export default all([
   takeLatest('@homeRecipe/GET_RECIPE_REQUEST', getRecipe),
   takeLatest('@homeRecipe/GET_MORE_RECIPE_REQUEST', getMoreRecipe),
+  takeLatest('@homeRecipe/SHOW_RECIPE_REQUEST', showRecipe),
 ])
