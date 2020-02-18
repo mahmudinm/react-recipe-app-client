@@ -15,8 +15,8 @@ const RecipeForm = ({ toggle, storeRecipe, updateRecipe }) => {
   const recipe = useSelector(state => state.recipe.recipe); // mengambil data dari redux untuk edit update
   const ingredients = useSelector(state => state.recipe.ingredients); 
   const categories = useSelector(state => state.recipe.categories); 
-  const FILE_SIZE = 1000 * 1024;
-  const SUPPORTED_FORMATS = [
+  const FILE_SIZE = 3000 * 1024;
+  const SUPPORTED_FORMATS = [ // validasi tipe gambar
     "image/jpg",
     "image/jpeg",
     "image/gif",
@@ -101,6 +101,14 @@ const RecipeForm = ({ toggle, storeRecipe, updateRecipe }) => {
             error={formik.errors.image}
             touched={formik.touched.image}
           />
+          {formik.values.image &&
+            <img 
+                src={`http://localhost:8000/image/${formik.values.image}`} 
+                alt={formik.values.image} 
+                className="img img-rounded"
+                style={{ width: '200px', objectFit: 'cover' }}
+            />
+          }
           <div className="row">
             <div className="col-md-6">
               <TextInput
