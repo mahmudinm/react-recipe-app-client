@@ -4,24 +4,20 @@ import {
   getRecipeRequest,
   getMoreRecipeRequest
 } from "store/modules/recipe/actions";
+import RecipeListLoader from "components/Loader/RecipeListLoader";
+import RecipeGridLoader from "components/Loader/RecipeGridLoader";
+import CardList from "components/Card/CardList";
+import CardGrid from "components/Card/CardGrid";
 import {
-  Row,
   Col,
-  Media,
   Input,
   Card,
   CardBody,
-  CardImg, 
-  CardText, 
-  CardTitle, 
-  CardSubtitle,  
   FormGroup,
   InputGroup,
   InputGroupAddon,
   InputGroupText
 } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import ContentLoader from "react-content-loader" 
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const RecipeListPage = () => {
@@ -81,82 +77,6 @@ const RecipeListPage = () => {
     }
   }
 
-  const RecipeListLoader = () => (
-    <React.Fragment>
-      <ContentLoader 
-        speed={1.3}
-        height={200}
-        width={1000}
-        backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
-      >
-        <rect x="25" y="25" rx="0" ry="0" width="200" height="150" />
-        <rect x="250" y="40" rx="5" ry="5" width="120" height="15" />
-        <rect x="250" y="80" rx="5" ry="5" width="220" height="15" />
-        <rect x="250" y="105" rx="5" ry="5" width="190" height="15" />
-      </ContentLoader>
-      <ContentLoader 
-        speed={1.3}
-        height={200}
-        width={1000}
-        backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
-      >
-        <rect x="25" y="25" rx="0" ry="0" width="200" height="150" />
-        <rect x="250" y="40" rx="5" ry="5" width="120" height="15" />
-        <rect x="250" y="80" rx="5" ry="5" width="220" height="15" />
-        <rect x="250" y="105" rx="5" ry="5" width="190" height="15" />
-      </ContentLoader>
-      <ContentLoader 
-        speed={1.3}
-        height={200}
-        width={1000}
-        backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
-      >
-        <rect x="25" y="25" rx="0" ry="0" width="200" height="150" />
-        <rect x="250" y="40" rx="5" ry="5" width="120" height="15" />
-        <rect x="250" y="80" rx="5" ry="5" width="220" height="15" />
-        <rect x="250" y="105" rx="5" ry="5" width="190" height="15" />
-      </ContentLoader>    
-    </React.Fragment>
-  )
-
-  const RecipeGridLoader = () => (
-    <React.Fragment>
-      <Row className="mt-4">
-        <Col lg="6" md="6">      
-          <ContentLoader 
-            speed={1.3}
-            height={400}
-            width={500}
-            backgroundColor="#f3f3f3"
-            foregroundColor="#ecebeb"
-          >
-            <rect x="0" y="0" rx="5" ry="5" width="500" height="270" />
-            <rect x="25" y="305" rx="5" ry="5" width="120" height="15" />
-            <rect x="25" y="345" rx="5" ry="5" width="220" height="15" />
-            <rect x="25" y="370" rx="5" ry="5" width="190" height="15" />
-          </ContentLoader>
-        </Col>
-        <Col lg="6" md="6">
-          <ContentLoader 
-            speed={1.3}
-            height={400}
-            width={500}
-            backgroundColor="#f3f3f3"
-            foregroundColor="#ecebeb"
-          >
-            <rect x="0" y="0" rx="5" ry="5" width="500" height="270" />
-            <rect x="25" y="305" rx="5" ry="5" width="120" height="15" />
-            <rect x="25" y="345" rx="5" ry="5" width="220" height="15" />
-            <rect x="25" y="370" rx="5" ry="5" width="190" height="15" />
-          </ContentLoader>
-        </Col>
-      </Row>
-    </React.Fragment>
-  )
-
   return (
     <React.Fragment>
       <Col lg="12" md="12">
@@ -174,23 +94,25 @@ const RecipeListPage = () => {
             </FormGroup>        
 
             <div className="dropdown">
-              <button className="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button className="btn btn-secondary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                 Select Category
               </button>
 
-              <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                {categories.map((category, key) => 
-                  <button className="dropdown-item" key={key}>
-                    <input 
-                      type="checkbox"
-                      value={category.id}
-                      data-name={category.name}
-                      onClick={handleCategory}
-                      id={`${category.name}-${category.id}`}
-                    /> : <label htmlFor={`${category.name}-${category.id}`}>{category.name}</label>
-                  </button>
-                )}
-              </div>
+              <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <form> 
+                  {categories.map((category, key) => 
+                    <li className="dropdown-item" key={key}>
+                      <input 
+                        type="checkbox"
+                        value={category.id}
+                        data-name={category.name}
+                        onClick={handleCategory}
+                        id={`${category.name}-${category.id}`}
+                      /> : <label htmlFor={`${category.name}-${category.id}`}>{category.name}</label>
+                    </li>
+                  )}
+                </form>
+              </ul>
             </div>
 
             <div className="btn-group float-right" role="group" aria-label="Basic example">
@@ -224,38 +146,10 @@ const RecipeListPage = () => {
                 {recipes.map((recipe, key) =>  {
                   return listGrid === 'List' ?  
                     <Col lg="12" md="12" key={key}>
-                      <Card className="mb-3">
-                        <CardBody>
-                          <Media>
-                            <Media left>
-                              <Media object style={{ width: '200px', height: '150px', objectFit: 'cover' }} src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image} />
-                            </Media>
-                            <Media body className="ml-4" >
-                              <Media>
-                                <h2 className="media-heading">
-                                  <Link to={`/recipe/${recipe.id}`}>{recipe.name}</Link>
-                                </h2>
-                              </Media>
-                              <b>Category : {recipe.category.name}</b>
-                              <p>{recipe.step}</p>
-                            </Media>
-                          </Media>
-                        </CardBody>
-                      </Card>   
+                      <CardList recipe={recipe} />
                     </Col> :
                     <Col lg="6" md="6" key={key}>
-                      <Card className="mt-4">
-                        <CardImg top src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image} style={{ height: '270px', objectFit: 'cover' }}/>
-                        <CardBody>
-                          <CardTitle>
-                            <h2>
-                              <Link to={`/recipe/${recipe.id}`}>{recipe.name}</Link>
-                            </h2>
-                          </CardTitle>
-                          <CardSubtitle>Category : {recipe.category.name}</CardSubtitle>
-                          <CardText>{recipe.step}</CardText>
-                        </CardBody>
-                      </Card>
+                      <CardGrid recipe={recipe}/>
                     </Col>
                 })} 
               </div>
