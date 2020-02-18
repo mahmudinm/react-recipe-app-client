@@ -7,13 +7,13 @@ export default function withGuest (ComposedComponent) {
 
     componentDidMount() {
       if (this.props.isAuthenticated) {
-        this.props.history.push('/admin/category')
+        this.props.history.push('/admin/recipe')
       } 
     }
 
-    componentWillUpdate(nextProps) {
+    UNSAFE_componentWillUpdate(nextProps) {
       if (this.props.isAuthenticated) {
-        this.props.history.push('/admin/category')
+        this.props.history.push('/admin/recipe')
       } 
     }
 

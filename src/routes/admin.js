@@ -17,22 +17,40 @@ const AdminRoute = () => {
     <Switch>
     
       {/*Category Page*/}
-      <LayoutRoute exact path="/admin/recipe" layout={AdminLayout} component={withAuth(RecipeListPage)} />
+      <LayoutRoute exact 
+          path="/admin/recipe" 
+          layout={AdminLayout} 
+          component={withAuth(RecipeListPage, ['admin', 'staff'])} />
     
       {/*Category Page*/}
-      <LayoutRoute exact path="/admin/category" layout={AdminLayout} component={withAuth(CategoryListPage)} />
+      <LayoutRoute exact 
+          path="/admin/category"
+          layout={AdminLayout} 
+          component={withAuth(CategoryListPage, ['admin'])} />
 
       {/*Ingredient Page*/}
-      <LayoutRoute exact path="/admin/ingredient" layout={AdminLayout} component={withAuth(IngredientListPage)} />
+      <LayoutRoute exact 
+          path="/admin/ingredient"
+          layout={AdminLayout} 
+          component={withAuth(IngredientListPage, ['admin'])} />
 
       {/*User Page*/}
-      <LayoutRoute exact path="/admin/user" layout={AdminLayout} component={withAuth(UserListPage)} />
+      <LayoutRoute exact 
+          path="/admin/user"
+          layout={AdminLayout} 
+          component={withAuth(UserListPage, ['admin'])} />
 
       {/*Permission Page*/}
-      <LayoutRoute exact path="/admin/permission" layout={AdminLayout} component={withAuth(PermissionListPage)} />
+      <LayoutRoute exact 
+          path="/admin/permission"
+          layout={AdminLayout} 
+          component={withAuth(PermissionListPage, ['admin'])} />
 
       {/*Permission Page*/}
-      <LayoutRoute exact path="/admin/role" layout={AdminLayout} component={withAuth(RoleListPage)} />
+      <LayoutRoute exact 
+          path="/admin/role"
+          layout={AdminLayout} 
+          component={withAuth(RoleListPage, ['admin'])} />
 
 
     </Switch>

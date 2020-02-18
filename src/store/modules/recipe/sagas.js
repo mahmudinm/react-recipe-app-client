@@ -18,7 +18,7 @@ export function* getRecipe({
     let map_category = '';
 
     if(categoryFilter.length > 0) {
-      categoryFilter.map((item) => {
+      categoryFilter.forEach((item) => {
         map_category += `&category_id[]=${item.id}`;
       })
     } else { 
@@ -50,7 +50,7 @@ export function* getMoreRecipe({
     let map_category = '';
 
     if(categoryFilter.length > 0) {
-      categoryFilter.map((item) => {
+      categoryFilter.forEach((item) => {
         map_category += `&category_id[]=${item.id}`;
       })
     } else { 
