@@ -8,15 +8,11 @@ import RecipeListLoader from "components/Loader/RecipeListLoader";
 import RecipeGridLoader from "components/Loader/RecipeGridLoader";
 import CardList from "components/Card/CardList";
 import CardGrid from "components/Card/CardGrid";
+import Form from "components/Form";
 import {
   Col,
-  Input,
   Card,
   CardBody,
-  FormGroup,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText
 } from 'reactstrap';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -45,6 +41,7 @@ const RecipeListPage = () => {
 
   const handleSearch = (e) => {
     let name = e.target.value;
+    // debouce search untuk tidak langsung search tapi di delay terlebih dahulu
     if(timer) clearTimeout(timer);
     timer = setTimeout(() => {
       setSearch(name);
@@ -83,16 +80,10 @@ const RecipeListPage = () => {
         <Card className="shadow border-0">
           <CardBody className="px-lg-5 py-lg-5">
 
-            <FormGroup className="mb-3">
-              <InputGroup className="input-group-alternative">
-                <InputGroupAddon addonType="prepend">
-                  <InputGroupText>
-                  </InputGroupText>
-                </InputGroupAddon>
-                <Input placeholder="Search..." type="email" style={{ height: '55px' }} onChange={handleSearch}/>
-              </InputGroup>
-            </FormGroup>        
+            {/* Form search */}
+            <Form handleSearch={handleSearch} />
 
+            {/* Dropdown Category */}
             <div className="dropdown">
               <button className="btn btn-secondary dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                 Select Category
@@ -115,11 +106,13 @@ const RecipeListPage = () => {
               </ul>
             </div>
 
+            {/* List Grid Toggle */}
             <div className="btn-group float-right" role="group" aria-label="Basic example">
               <button type="button" className="btn btn-secondary active" id="list-button" onClick={(e) => handleListGrid(e, 'List')} >LIST</button>
               <button type="button" className="btn btn-secondary" id="grid-button" onClick={(e) => handleListGrid(e, 'Grid')} >GRID</button>
             </div>            
 
+            {/* Category List Badge */}
             <div className="my-3">
               {categoryFilter.map((item, key) => 
                 <span className="badge badge-primary" style={{ lineHeight: '1.8', paddingLeft: '10px', paddingRight: '10px', marginRight: '10px' }} key={key}>
@@ -131,6 +124,7 @@ const RecipeListPage = () => {
               )}
             </div>
 
+            {/* Infinite Scroll */}
             <InfiniteScroll
               className="mt-4"
               dataLength={recipes.length}
