@@ -1,39 +1,14 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-/*eslint-disable*/
 import React from "react";
 import { NavLink as NavLinkRRD, Link } from "react-router-dom";
-// nodejs library to set properties for components
 import { PropTypes } from "prop-types";
-
-// reactstrap components
+import { connect } from 'react-redux';
+import jwt from 'jwt-decode'
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
   Collapse,
   DropdownMenu,
   DropdownItem,
   UncontrolledDropdown,
   DropdownToggle,
-  FormGroup,
   Form,
   Input,
   InputGroupAddon,
@@ -45,14 +20,11 @@ import {
   NavItem,
   NavLink,
   Nav,
-  Progress,
-  Table,
   Container,
   Row,
   Col
 } from "reactstrap";
 
-var ps;
 
 class Sidebar extends React.Component {
   state = {
@@ -97,8 +69,9 @@ class Sidebar extends React.Component {
     });
   };
   render() {
-    const { bgColor, routes, logo } = this.props;
+    const { token, logo } = this.props;
     let navbarBrandProps;
+    
     if (logo && logo.innerLink) {
       navbarBrandProps = {
         to: logo.innerLink,
@@ -110,6 +83,13 @@ class Sidebar extends React.Component {
         target: "_blank"
       };
     }
+
+    // Implement Role base access list
+    let roles; 
+    if (token !== null) {
+      roles = jwt(this.props.token);
+    }    
+
     return (
       <Navbar
         className="navbar-vertical fixed-left navbar-light bg-white"
@@ -241,72 +221,79 @@ class Sidebar extends React.Component {
 
             {/* Navigation */}
             <Nav navbar>
-              <NavItem>
-                <NavLink
-                  to={'/admin/recipe'}
-                  onClick={this.closeCollapse}
-                  tag={NavLinkRRD}
-                  activeClassName="active"
-                >
-                  <i className="ni ni-tv-2 text-primary" />
-                  Recipe
-                </NavLink>
-              </NavItem> 
-              <NavItem>
-                <NavLink
-                  to={'/admin/category'}
-                  onClick={this.closeCollapse}
-                  tag={NavLinkRRD}
-                  activeClassName="active"
-                >
-                  <i className="ni ni-tv-2 text-primary" />
-                  Category
-                </NavLink>
-              </NavItem> 
-              <NavItem>
-                <NavLink
-                  to={'/admin/ingredient'}
-                  onClick={this.closeCollapse}
-                  tag={NavLinkRRD}
-                  activeClassName="active"
-                >
-                  <i className="ni ni-tv-2 text-primary" />
-                  Ingredient
-                </NavLink>
-              </NavItem>    
-              <NavItem>
-                <NavLink
-                  to={'/admin/permission'}
-                  onClick={this.closeCollapse}
-                  tag={NavLinkRRD}
-                  activeClassName="active"
-                >
-                  <i className="ni ni-tv-2 text-primary" />
-                  Permission
-                </NavLink>
-              </NavItem>              
-              <NavItem>
-                <NavLink
-                  to={'/admin/role'}
-                  onClick={this.closeCollapse}
-                  tag={NavLinkRRD}
-                  activeClassName="active"
-                >
-                  <i className="ni ni-tv-2 text-primary" />
-                  Role
-                </NavLink>
-              </NavItem>              
-              <NavItem>
-                <NavLink
-                  to={'/admin/user'}
-                  onClick={this.closeCollapse}
-                  tag={NavLinkRRD}
-                  activeClassName="active"
-                >
-                  <i className="ni ni-tv-2 text-primary" />
-                  User
-                </NavLink>
-              </NavItem>              
+              {(roles.roles.toString() === 'staff' || roles.roles.toString() === 'admin') &&
+                <NavItem>
+                  <NavLink
+                    to={'/admin/recipe'}
+                    onClick={this.closeCollapse}
+                    tag={NavLinkRRD}
+                    activeClassName="active"
+                  >
+                    <i className="ni ni-tv-2 text-primary" />
+                    Recipe
+                  </NavLink>
+                </NavItem> 
+              }
+
+              {roles.roles.toString() === 'admin' &&
+                <React.Fragment>
+                  <NavItem>
+                    <NavLink
+                      to={'/admin/category'}
+                      onClick={this.closeCollapse}
+                      tag={NavLinkRRD}
+                      activeClassName="active"
+                    >
+                      <i className="ni ni-tv-2 text-primary" />
+                      Category
+                    </NavLink>
+                  </NavItem> 
+                  <NavItem>
+                    <NavLink
+                      to={'/admin/ingredient'}
+                      onClick={this.closeCollapse}
+                      tag={NavLinkRRD}
+                      activeClassName="active"
+                    >
+                      <i className="ni ni-tv-2 text-primary" />
+                      Ingredient
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      to={'/admin/user'}
+                      onClick={this.closeCollapse}
+                      tag={NavLinkRRD}
+                      activeClassName="active"
+                    >
+                      <i className="ni ni-tv-2 text-primary" />
+                      User
+                    </NavLink>
+                  </NavItem>              
+                  <NavItem>
+                    <NavLink
+                      to={'/admin/role'}
+                      onClick={this.closeCollapse}
+                      tag={NavLinkRRD}
+                      activeClassName="active"
+                    >
+                      <i className="ni ni-tv-2 text-primary" />
+                      Role
+                    </NavLink>
+                  </NavItem>                      
+                  <NavItem>
+                    <NavLink
+                      to={'/admin/permission'}
+                      onClick={this.closeCollapse}
+                      tag={NavLinkRRD}
+                      activeClassName="active"
+                    >
+                      <i className="ni ni-tv-2 text-primary" />
+                      Permission
+                    </NavLink>
+                  </NavItem>                   
+                </React.Fragment>
+              }
             </Nav>
 
 
@@ -363,4 +350,8 @@ Sidebar.propTypes = {
   })
 };
 
-export default Sidebar;
+const mapStateToProps = (state) => ({
+  token: state.auth.token
+});
+
+export default connect(mapStateToProps, null)(Sidebar);
