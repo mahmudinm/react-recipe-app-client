@@ -25,7 +25,7 @@ export function* login({
 
     setStatus();
 
-    history.push('/admin/category');
+    history.push('/admin/recipe');
   } catch (err) {
 
     setStatus("Email atau Password Salah");

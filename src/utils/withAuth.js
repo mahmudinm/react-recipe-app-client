@@ -24,11 +24,12 @@ export default function withAuth (ComposedComponent, allowedRoles) {
       let roles; 
       if (this.props.token !== null) {
         roles = jwt(this.props.token);
-      } 
 
-      // menggunakan method some bukan includes soalnya data yang di berikan array bukan string
-      if(allowedRoles.some(v => roles.roles.includes(v))) {
-        return <ComposedComponent {...this.props} />
+        // menggunakan method some bukan includes soalnya data yang di berikan array bukan string
+        if(allowedRoles.some(v => roles.roles.includes(v))) {
+          return <ComposedComponent {...this.props} />
+        } 
+        
       } else {
         return <Redirect to="/admin/recipe"/>
       }

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 // reactstrap components
 import {
   UncontrolledCollapse,
@@ -14,12 +15,16 @@ import {
 } from "reactstrap";
 
 const AdminNavbar = () => {
+
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
   return (
     <>
       <Navbar
         expand="md"
         className="shadow"
         style={{ background: 'white' }}
+        light
       >
         <Container className="px-4">
           <NavbarBrand to="/" tag={Link} style={{ fontSize: '22px' }}>
@@ -41,20 +46,30 @@ const AdminNavbar = () => {
                     <span />
                     <span />
                   </button>
-                </Col>
+                </Col>                
               </Row>
             </div>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink
-                  className="nav-link-icon"
-                  to="/auth/login"
-                  tag={Link}
-                >
-                  <i className="ni ni-key-25" />
-                  <span className="nav-link-inner--text">Login</span>
-                </NavLink>
-              </NavItem>
+              {isAuthenticated ? 
+                <NavItem>
+                  <NavLink
+                    className="nav-link-icon"
+                    to="/admin/recipe"
+                    tag={Link}
+                  >
+                    <span className="nav-link-inner--text">Dashboard</span>
+                  </NavLink>
+                </NavItem> :
+                <NavItem>
+                  <NavLink
+                    className="nav-link-icon"
+                    to="/auth/login"
+                    tag={Link}
+                  >
+                    <span className="nav-link-inner--text">Login</span>
+                  </NavLink>
+                </NavItem>
+              }
             </Nav>
           </UncontrolledCollapse>
         </Container>
