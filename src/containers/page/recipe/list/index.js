@@ -108,8 +108,12 @@ const RecipeListPage = () => {
 
             {/* List Grid Toggle */}
             <div className="btn-group float-right" role="group" aria-label="Basic example">
-              <button type="button" className="btn btn-secondary active" id="list-button" onClick={(e) => handleListGrid(e, 'List')} >LIST</button>
-              <button type="button" className="btn btn-secondary" id="grid-button" onClick={(e) => handleListGrid(e, 'Grid')} >GRID</button>
+              <button type="button" className="btn btn-secondary active" id="list-button" onClick={(e) => handleListGrid(e, 'List')} >
+                List
+              </button>
+              <button type="button" className="btn btn-secondary" id="grid-button" onClick={(e) => handleListGrid(e, 'Grid')} >
+                Grid
+              </button>
             </div>            
 
             {/* Category List Badge */}

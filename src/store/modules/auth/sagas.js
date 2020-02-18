@@ -7,7 +7,7 @@ import { loginSuccess, loginFailure } from './actions';
 
 export function* login({ 
   payload,
-  meta: { setSubmitting, setStatus }
+  meta: { setSubmitting, setStatus, closeWindow }
 }) {
   try {
     const { email, password } = payload
@@ -25,11 +25,16 @@ export function* login({
 
     setStatus();
 
-    history.push('/admin/recipe');
+    // masalah unmount memory leak pada formik | bukan cara yang bagus tapi bisa jalan
+    setTimeout(() => {
+      history.push('/admin/recipe');
+    }, 100);
+
   } catch (err) {
 
     setStatus("Email atau Password Salah");
     yield put(loginFailure());
+    setSubmitting(false);
 
   } finally {
     setSubmitting(false);
