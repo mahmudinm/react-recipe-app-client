@@ -7,7 +7,7 @@ import { loginSuccess, loginFailure } from './actions';
 
 export function* login({ 
   payload,
-  meta: { setSubmitting, setStatus, closeWindow }
+  meta: { setSubmitting, setStatus }
 }) {
   try {
     const { email, password } = payload
