@@ -8,7 +8,7 @@ import RecipeShowPage from "containers/page/recipe/show";
 import LoginPage from "containers/page/auth/login";
 
 const MainRoute = () => {
-  return (
+  return ( 
     <Switch>
       <LayoutRoute exact path="/" layout={MainLayout} component={RecipeListPage} />
       <LayoutRoute exact path="/recipe/:id" layout={MainLayout} component={RecipeShowPage} />

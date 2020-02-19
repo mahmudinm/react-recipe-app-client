@@ -19,7 +19,7 @@ import CategoryTable from './CategoryTable.jsx';
 import CategoryFormPage from './Form';
 
 const CategoryListPage = () => {
-
+ 
   const [modal, setModal] = useState(false); // untuk set modal false atau true
   const [modalTitle, setModalTitle] = useState(""); // untuk set title pada modal
   const toggle = () => setModal(!modal);

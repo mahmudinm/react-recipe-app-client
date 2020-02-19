@@ -12,7 +12,7 @@ import PermissionListPage from "containers/page/admin/permission";
 import RoleListPage from "containers/page/admin/role";
 import UserListPage from "containers/page/admin/user";
 
-const AdminRoute = () => {
+const AdminRoute = () => { 
   return (
     <Switch>
     
