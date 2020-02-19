@@ -6,13 +6,13 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { ToastContainer } from 'react-toastify';
 // import toast
 import 'react-toastify/dist/ReactToastify.css';
-// import assets
+// import assets 
 import "assets/vendor/nucleo/css/nucleo.css";
 import "assets/vendor/@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/scss/argon-dashboard-react.scss";
 // Import Bootstrap
-import $ from 'jquery';
-import 'bootstrap/dist/js/bootstrap.min.js';
+import $ from 'jquery'; // eslint-disable-line
+import 'bootstrap/dist/js/bootstrap.min.js'; 
 // Import spinner
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 

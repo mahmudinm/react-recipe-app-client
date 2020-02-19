@@ -35,7 +35,7 @@ const RecipeShowPage = () => {
         <Card className="shadow border-0">
           {recipe.name ? 
             <React.Fragment>
-              <CardImg top src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image} style={{ height: '450px', objectFit: 'cover' }}/>
+              <CardImg top src={`${process.env.REACT_APP_URL}/image/${recipe.image}`} alt={recipe.image} style={{ height: '450px', objectFit: 'cover' }}/>
               <CardBody>
                 <CardTitle>
                   <h1>{recipe.name}</h1>

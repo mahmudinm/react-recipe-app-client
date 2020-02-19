@@ -12,7 +12,7 @@ const CardGrid = ({ recipe }) => {
       <CardBody>
         <Media>
           <Media left>
-            <Media object style={{ width: '200px', height: '150px', objectFit: 'cover' }} src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image} />
+            <Media object style={{ width: '200px', height: '150px', objectFit: 'cover' }} src={`${process.env.REACT_APP_URL}/image/${recipe.image}`} alt={recipe.image} />
           </Media>
           <Media body className="ml-4" >
             <Media>

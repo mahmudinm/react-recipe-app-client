@@ -103,7 +103,7 @@ const RecipeForm = ({ toggle, storeRecipe, updateRecipe }) => {
           />
           {editData.image &&
             <img 
-                src={`http://localhost:8000/image/${formik.values.image}`} 
+                src={`${process.env.REACT_APP_URL}/image/${formik.values.image}`} 
                 alt={formik.values.image} 
                 className="rounded mb-2"
                 style={{ width: '200px', objectFit: 'cover' }}

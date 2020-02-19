@@ -12,7 +12,7 @@ import {
 const CardGrid = ({ recipe }) => {
   return (
     <Card className="mt-4">
-      <CardImg top src={`http://localhost:8000/image/${recipe.image}`} alt={recipe.image} style={{ height: '270px', objectFit: 'cover' }}/>
+      <CardImg top src={`${process.env.REACT_APP_URL}/image/${recipe.image}`} alt={recipe.image} style={{ height: '270px', objectFit: 'cover' }}/>
       <CardBody>
         <CardTitle>
           <h2>
