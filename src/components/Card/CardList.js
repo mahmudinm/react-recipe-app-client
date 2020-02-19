@@ -21,7 +21,7 @@ const CardGrid = ({ recipe }) => {
               </h2>
             </Media>
             <b>Category : {recipe.category.name}</b>
-            <p>{recipe.step}</p>
+            <p>{`${recipe.step.substring(0, 250)}...`}</p>
           </Media>
         </Media>
       </CardBody>

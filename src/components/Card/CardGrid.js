@@ -20,7 +20,7 @@ const CardGrid = ({ recipe }) => {
           </h2>
         </CardTitle>
         <CardSubtitle>Category : {recipe.category.name}</CardSubtitle>
-        <CardText>{recipe.step}</CardText>
+        <CardText>{`${recipe.step.substring(0, 250)}...`}</CardText>
       </CardBody>
     </Card>
   )
