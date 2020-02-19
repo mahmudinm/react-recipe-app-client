@@ -44,6 +44,13 @@
 - react-toastify
 - react-select
 
+## Credit to
+[React Argon Dashboard](https://github.com/creativetimofficial/argon-dashboard-react)
+[Formik FieldArray](https://dev.to/giovanigenerali/formik-example-using-fielarray-with-validation-5a4h)
+[React Role Access Control](https://medium.com/better-programming/role-based-authorization-in-react-c70bb7641db4)
+[React Skeleton Loader](https://alligator.io/react/skeleton-screens-react-and-react-native/)
+[Contoh redux saga](https://github.com/JonasVargaski/react-users-crud)
+
 ## Screenshot / Preview App
 ![Preview Home Recipe App](https://github.com/mahmudinm/react-resep-makanan-client/blob/master/screenshots/preview_gif.gif)
 ![Halaman Recipe List](https://github.com/mahmudinm/react-resep-makanan-client/blob/master/screenshots/halaman_recipe_list.png)
