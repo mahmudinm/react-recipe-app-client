@@ -101,11 +101,11 @@ const RecipeForm = ({ toggle, storeRecipe, updateRecipe }) => {
             error={formik.errors.image}
             touched={formik.touched.image}
           />
-          {formik.values.image &&
+          {editData.image &&
             <img 
                 src={`http://localhost:8000/image/${formik.values.image}`} 
                 alt={formik.values.image} 
-                className="img img-rounded"
+                className="rounded mb-2"
                 style={{ width: '200px', objectFit: 'cover' }}
             />
           }
