@@ -45,7 +45,7 @@
 - react-select
 
 ## Screenshot / Preview App
-![Preview Home Recipe App](https://github.com/mahmudinm/react-resep-makanan-client/raw/master/screenshot/preview_gif.gif)
-![Halaman Recipe List](https://github.com/mahmudinm/react-resep-makanan-client/raw/master/screenshot/halaman_recipe_list.png)
-![Halaman Recipe Form Create](https://github.com/mahmudinm/react-resep-makanan-client/raw/master/screenshot/halaman_recipe_form_create.png)
-![Halaman Recipe Form Edit](https://github.com/mahmudinm/react-resep-makanan-client/raw/master/screenshot/halaman_recipe_form_edit.png)
+![Preview Home Recipe App](https://github.com/mahmudinm/react-resep-makanan-client/blob/master/screenshots/preview_gif.gif)
+![Halaman Recipe List](https://github.com/mahmudinm/react-resep-makanan-client/blob/master/screenshots/halaman_recipe_list.png)
+![Halaman Recipe Form Create](https://github.com/mahmudinm/react-resep-makanan-client/blob/master/screenshots/halaman_recipe_form_create.png)
+![Halaman Recipe Form Edit](https://github.com/mahmudinm/react-resep-makanan-client/blob/master/screenshots/halaman_recipe_form_edit.png)
